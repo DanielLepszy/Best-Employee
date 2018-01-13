@@ -1,7 +1,69 @@
-{"Pytania" :[
-
-    "Jak się nazywa twoj przyszly pracownik",
-    "Kto jest najlepszy",
-    "Kogo zaprosisz na rozmowe kwalifikacyjna"
-]
+{
+    "Questions": [{
+            "questionTitle": "Jak się nazywa twoj przyszly pracownik?",
+            "answers": [{
+                    "id": "A",
+                    "answerTitle": "Daniel Lepszy",
+                    "isCorrectAnswer": true
+                },
+                {
+                    "id": "B",
+                    "answerTitle": "Elvis Presley"
+                },
+                {
+                    "id": "C",
+                    "answerTitle": "Violetta Villas"
+                },
+                {
+                    "id": "D",
+                    "answerTitle": "Mark Zuckerberg"
+                }
+            ],
+            "correctAnswerId": "A"
+        },
+        {
+            "QuestionTitle": "Kto jest najlepszy?",
+            "answers": [{
+                    "id": "A",
+                    "answerTitle": "Daniel Lepszy",
+                    "isCorrectAnswer": true
+                },
+                {
+                    "id": "B",
+                    "answerTitle": "Elvis Presley"
+                },
+                {
+                    "id": "C",
+                    "answerTitle": "Violetta Villas"
+                },
+                {
+                    "id": "D",
+                    "answerTitle": "Mark Zuckerberg"
+                }
+            ],
+            "correctAnswerId": "A"
+        },
+        {
+            "QuestionTitle": "Kogo zaprosisz na rozmowe kwalifikacyjna?",
+            "answers": [{
+                    "id": "A",
+                    "answerTitle": "Daniel Lepszy",
+                    "isCorrectAnswer": true
+                },
+                {
+                    "id": "B",
+                    "answerTitle": "Elvis Presley"
+                },
+                {
+                    "id": "C",
+                    "answerTitle": "Violetta Villas"
+                },
+                {
+                    "id": "D",
+                    "answerTitle": "Mark Zuckerberg"
+                }
+            ],
+            "correctAnswerId": "A"
+        }
+    ]
 }
