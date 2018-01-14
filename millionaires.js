@@ -1,9 +1,74 @@
 var beginGame = document.getElementById('start');
-
-
-//alert(bb);
-
-var allQuestions = ['Które z wymienionych osob chcesz zatrudnic', 'Ktory jest dobry', 'Kto bedzie pracowac'];
+var allQuestions =  {
+    "Questions": [{
+            "QuestionTitle": "Jak się nazywa twoj przyszly pracownik?",
+            "answers": [{
+                    "id": "A",
+                    "answerTitle": "Daniel Lepszy",
+                    "isCorrectAnswer": true
+                },
+                {
+                    "id": "B",
+                    "answerTitle": "Elvis Presley"
+                },
+                {
+                    "id": "C",
+                    "answerTitle": "Violetta Villas"
+                },
+                {
+                    "id": "D",
+                    "answerTitle": "Mark Zuckerberg"
+                }
+            ],
+            "correctAnswerId": "A"
+        },
+        {
+            "QuestionTitle": "Kto jest najlepszy?",
+            "answers": [{
+                    "id": "A",
+                    "answerTitle": "Daniel Lepszy",
+                    "isCorrectAnswer": true
+                },
+                {
+                    "id": "B",
+                    "answerTitle": "Elvis Presley"
+                },
+                {
+                    "id": "C",
+                    "answerTitle": "Violetta Villas"
+                },
+                {
+                    "id": "D",
+                    "answerTitle": "Mark Zuckerberg"
+                }
+            ],
+            "correctAnswerId": "A"
+        },
+        {
+            "QuestionTitle": "Kogo zaprosisz na rozmowe kwalifikacyjna?",
+            "answers": [{
+                    "id": "A",
+                    "answerTitle": "Daniel Lepszy",
+                    "isCorrectAnswer": true
+                },
+                {
+                    "id": "B",
+                    "answerTitle": "Elvis Presley"
+                },
+                {
+                    "id": "C",
+                    "answerTitle": "Violetta Villas"
+                },
+                {
+                    "id": "D",
+                    "answerTitle": "Mark Zuckerberg"
+                }
+            ],
+            "correctAnswerId": "A"
+        }
+    ]
+}
+console.log(allQuestions.Questions[0]);
 var answersFirst = ['Daniel Lepszy', 'a', 'b', 'c', 't', 'g'];
 var answersSecond = ['Daniel Lepszy', 'a', 'b', 'c', 't', 'g'];
 var answersThird = ['Daniel Lepszy', 'a', 'b', 'c', 't', 'g'];
@@ -22,35 +87,35 @@ function showQuestion() {
         if (questionNumber = 1) {
 
             //$('#audio').attr('src','Sounds/Game.mp3');
-            $('#answerA td').after('<td>' + answersFirst[0] + '</td>');
-            $('#answerB td').after('<td>' + answersFirst[1] + '</td>');
-            $('#answerC td').after('<td>' + answersFirst[2] + '</td>');
-            $('#answerD td').after('<td>' + answersFirst[3] + '</td>');
-            $('#mainQuestion p').replaceWith('<p>' + allQuestions[0] + '</td>');
+            $('#answerA td').after('<td>' + allQuestions.Questions[0].answers[0].answerTitle + '</td>');
+            $('#answerB td').after('<td>' + allQuestions.Questions[0].answers[1].answerTitle + '</td>');
+            $('#answerC td').after('<td>' + allQuestions.Questions[0].answers[2].answerTitle + '</td>');
+            $('#answerD td').after('<td>' + allQuestions.Questions[0].answers[3].answerTitle + '</td>');
+            $('#mainQuestion p').replaceWith('<p>' + allQuestions.Questions[0].QuestionTitle + '</td>');
 
 
             questionNumber++
         }
         else if (questionNumber = 2) {
-            $('#answerA td').after('<td>' + answersSecond[0] + '</td>');
-            $('#answerB td').after('<td>' + answersSecond[1] + '</td>');
-            $('#answerC td').after('<td>' + answersSecond[2] + '</td>');
-            $('#answerD td').after('<td>' + answersSecond[3] + '</td>');
-            $('#mainQuestion p').replaceWith('<p>' + allQuestions[0] + '</td>');
+            $('#answerA td').after('<td>' + allQuestions.Questions[1].answers[0].answerTitle  + '</td>');
+            $('#answerB td').after('<td>' + allQuestions.Questions[1].answers[1].answerTitle + '</td>');
+            $('#answerC td').after('<td>' + allQuestions.Questions[1].answers[2].answerTitle + '</td>');
+            $('#answerD td').after('<td>' + allQuestions.Questions[1].answers[3].answerTitle + '</td>');
+            $('#mainQuestion p').replaceWith('<p>' + allQuestions.Questions[1].QuestionTitle + '</td>');
         }
         else if (questionNumber = 3) {
-            $('#answerA td').after('<td>' + answersThird[0] + '</td>');
-            $('#answerB td').after('<td>' + answersThird[1] + '</td>');
-            $('#answerC td').after('<td>' + answersThird[2] + '</td>');
-            $('#answerD td').after('<td>' + answersThird[3] + '</td>');
-            $('#mainQuestion p').replaceWith('<p>' + allQuestions[0] + '</td>');
+            $('#answerA td').after('<td>' + allQuestions.Questions[2].answers[0].answerTitle + '</td>');
+            $('#answerB td').after('<td>' + allQuestions.Questions[2].answers[1].answerTitle + '</td>');
+            $('#answerC td').after('<td>' + allQuestions.Questions[2].answers[2].answerTitle + '</td>');
+            $('#answerD td').after('<td>' + allQuestions.Questions[2].answers[3].answerTitle + '</td>');
+            $('#mainQuestion p').replaceWith('<p>' + allQuestions.Questions[2].QuestionTitle + '</td>');
         }
         else if (questionNumber = 4) {
-            $('#answerA td').after('<td>' + answersFourth[0] + '</td>');
-            $('#answerB td').after('<td>' + answersFourth[1] + '</td>');
-            $('#answerC td').after('<td>' + answersFourth[2] + '</td>');
-            $('#answerD td').after('<td>' + answersFourth[3] + '</td>');
-            $('#mainQuestion p').replaceWith('<p>' + allQuestions[0] + '</td>');
+            $('#answerA td').after('<td>' + allQuestions.Questions[3].answers[0].answerTitle + '</td>');
+            $('#answerB td').after('<td>' + allQuestions.Questions[3].answers[1].answerTitle + '</td>');
+            $('#answerC td').after('<td>' + allQuestions.Questions[3].answers[2].answerTitle + '</td>');
+            $('#answerD td').after('<td>' + allQuestions.Questions[3].answers[3].answerTitle + '</td>');
+            $('#mainQuestion p').replaceWith('<p>' + allQuestions.Questions[3].QuestionTitle + '</td>');
         }
         $('#mainQuestion').css({
             'position': 'absolute',
