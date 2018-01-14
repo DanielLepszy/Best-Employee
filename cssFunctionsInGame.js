@@ -199,6 +199,7 @@ function startGame() {
         'cursor': 'hand',
         'align-items': 'center',
         'justify-content': 'left',
+        
        
     });
 

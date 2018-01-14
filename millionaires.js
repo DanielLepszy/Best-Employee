@@ -68,17 +68,17 @@ var allQuestions = {
     }
     ]
 }
-console.log(allQuestions.Questions[0]);
+
 var clearAnswer = document.getElementById('allAnswers');
 
 var firstAnswer = document.getElementById('answerA');
-var SecondAnswer = document.getElementById('answerB');
-var ThirdAnswer = document.getElementById('answerC');
-var FourthAnswer = document.getElementById('answerD');
+var secondAnswer = document.getElementById('answerB');
+var thirdAnswer = document.getElementById('answerC');
+var fourthAnswer = document.getElementById('answerD');
 
-
+console.log(secondAnswer);
 beginGame.addEventListener("click", function () { firstMusic(),focusMusic(),showQuestion()});
-firstAnswer.addEventListener("click", function () {checkAnswer() });
+$('body').one('click', '#allAnswers', function()  {checkAnswer() });
 
 //var goodAnswer = document.getElementById('allAnswers');
 //goodAnswer.addEventListener("click",function(){checkAnswer()});
@@ -107,13 +107,16 @@ function showQuestion() {
         setTimeout(function (){$('#answerD .firstRowAnswer').after('<p>' + allQuestions.Questions[0].answers[3].answerTitle + '</p>')}, 8000);
         
 
+
             questionNumber++  
         
     }, 6400);
 
-}
+};
         
         function checkAnswer() {
+
+            //setTimeout(function () {}, 16400);
             $('#audio').attr('src', 'Sounds/GoodAnswers.mp3');
         
             $("#answerA").delay(100).animate({
@@ -129,10 +132,27 @@ function showQuestion() {
         
             },
                 500);
+                setTimeout(function () {
+                $('#mainQuestion p').remove();
+                $('#answerA p:nth-child(2)').remove();
+                $('#answerB p:nth-child(2)').remove();
+                $('#answerC p:nth-child(2)').remove();
+                $('#answerD p:nth-child(2)').remove();
+
+                $("#answerA").animate({
+                    
+                            backgroundColor: 'black'
+                            },
+                            0);
+
+                }, 15000);
+        }
         
-        };
-        
-    
+
+
+  function lala(){
+      alert("jaja");
+  }  
     
 
    
