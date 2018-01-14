@@ -57,15 +57,14 @@ function startGame() {
     $('#allContents').remove();
 
     $('body').html(
-        '<audio id="audio" controls autoplay src="Sounds/Begin.mp3" hidden="true"/>' +
+        '<audio id="audio" controls autoplay hidden="true"/>' +
         '<div id="toWin"></div><div id="getAid"> </div><div id="mainQuestion"></div>' +
         '<div id="allAnswers"><div id="answerA"></div> <div id="answerB"></div>' +
         '<div id="answerC"></div> <div id="answerD"></div></div>'
     );
 
-
     $('#getAid').html(
-        '<img id="publicAid" src="Images/publicznosc.png">'+
+        '<img id="publicAid" src="Images/publicznosc.png">' +
         '<img id="fifty-fifty" src="Images/polnapol.png">' +
         '<img id="friendcAid" src="Images/telefondoprzyjaciela.png">'
     );
@@ -73,10 +72,10 @@ function startGame() {
 
     $('#mainQuestion').html('<p></p>');
 
-    $('#answerA').html('<table class="firstRowAnswer"><tr><td>A: </td></tr></table>');
-    $('#answerB').html('<table class="firstRowAnswer"><tr><td>B: </td></tr></table>');
-    $('#answerC').html('<table class="secondRowAnswer"><tr><td>C: </td></tr></table>');
-    $('#answerD').html('<table class="secondRowAnswer"><tr><td>D: </td></tr></table>');
+    $('#answerA').html('<p class="firstRowAnswer">A:</p>');
+    $('#answerB').html('<p class="firstRowAnswer">B:</p>');
+    $('#answerC').html('<p class="firstRowAnswer">C:</p>');
+    $('#answerD').html('<p class="firstRowAnswer">D:</p>');
 
     $('body').css({
         'background': 'url(Images/background2.png)',
@@ -157,6 +156,11 @@ function startGame() {
         'opacity': '0.95',
         'color': 'white',
         'font-size': '30px',
+        'display': 'flex',
+        'flex-wrap': 'wrap',
+        'align-items': 'center',
+        'justify-content': 'center',
+        'margin': '0px'
     });
 
     $('#mainQuestion p').css({
@@ -175,7 +179,7 @@ function startGame() {
         'left': '10%',
         'width': '80%',
         'height': '40%',
-        'color': '#E3A433',
+        'color': 'white',
         'font-size': '30px',
         'font-weight': 'bold',
         'text-align': 'left',
@@ -183,6 +187,7 @@ function startGame() {
     });
 
     $('#allAnswers div').css({
+        'display': 'flex',
         'border': '5px solid black',
         'width': '48%',
         'height': '40%',
@@ -191,56 +196,27 @@ function startGame() {
         'border-radius': '30%',
         'background-color': 'black',
         'opacity': '0.95',
-        'cursor': 'hand'
+        'cursor': 'hand',
+        'align-items': 'center',
+        'justify-content': 'left',
+       
     });
 
-    $('#allAnswers table').css({
 
-        'position': 'absolute',
-        'display': 'flex',
-        'flex-wrap': 'wrap',
-        'margin-top': '50px'
-    });
-
-    $('#allAnswers tr td:nth-child(1) ').css({
+    $('#allAnswers p:nth-child(1) ').css({
         'color': 'gold',
         'font-size': '30px',
         'font-weight': 'bold',
+        
 
     });
-    $('#allAnswers tr td:nth-child(2) ').css({
+    $('#allAnswers p:nth-child(2) ').css({
 
         'position': 'absolute',
         'top': '59%',
-        'color': 'gold',
+        'color': 'red',
         'font-size': '30px',
         'font-weight': 'bold',
-    });
-
-    $('.firstRowAnswer td:nth-child(1)').css({
-        'position': 'absolute',
-        'top': '19%',
-    });
-    $('.firstRowAnswer td:nth-child(2)').css({
-        'position': 'absolute',
-        'top': '19%',
-        'color': 'White',
-        'font-size': '30px',
-        'margin': 'auto',
-        'padding-left': '50px'
-    });
-
-    $('.secondRowAnswer td:nth-child(1)').css({
-        'position': 'absolute',
-        'top': '69%',
-    });
-    $('.secondRowAnswer td:nth-child(2)').css({
-        'position': 'absolute',
-        'top': '69%',
-        'color': 'White',
-        'font-size': '30px',
-        'margin': 'auto',
-        'padding-left': '50px'
     });
 
 
