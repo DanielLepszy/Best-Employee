@@ -205,6 +205,7 @@ function startGame() {
 
 
     $('#allAnswers p:nth-child(1) ').css({
+        'z-index':'2',
         'color': 'gold',
         'font-size': '30px',
         'font-weight': 'bold',

@@ -107,9 +107,9 @@ function getAnswers(x) {
    var boxOfAnswers2 = [];
     for (var j = 0; j <= 3; j++) {
 
-        boxOfAnswers2.push(allQuestions.Questions[x].answers[j].answerTitle);
+        boxOfAnswers.push(allQuestions.Questions[x].answers[j].answerTitle);
     }
-    return boxOfAnswers[x]=boxOfAnswers2;
+    return boxOfAnswers;
 }
 
 function showSet(z,time) {
@@ -117,18 +117,22 @@ function showSet(z,time) {
     setTimeout(function () {
 
          $('#mainQuestion p').after('<p>' +  boxOfQuestions[z] + '</p>');
-        setTimeout(function () { $('#answerA .firstRowAnswer').after('<p>' + boxOfAnswers[x][0] + '</p>') }, 2000);
-        setTimeout(function () { $('#answerB .firstRowAnswer').after('<p>' +  boxOfQuestions[z] + '</p>') }, 4000);
-        setTimeout(function () { $('#answerC .firstRowAnswer').after('<p>' + boxOfAnswers[x][2] + '</p>') }, 6000);
-        setTimeout(function () { $('#answerD .firstRowAnswer').after('<p>' + boxOfAnswers[x][3] + '</p>') }, 8000);
+        setTimeout(function () { $('#answerA .firstRowAnswer').after('<p>' + boxOfAnswers[0] + '</p>') }, 2000);
+        setTimeout(function () { $('#answerB .firstRowAnswer').after('<p>' + boxOfAnswers[1] + '</p>') }, 4000);
+        setTimeout(function () { $('#answerC .firstRowAnswer').after('<p>' + boxOfAnswers[2] + '</p>') }, 6000);
+        setTimeout(function () { $('#answerD .firstRowAnswer').after('<p>' + boxOfAnswers[3] + '</p>') }, 8000);
 
+       // $("#answerA .firstRowAnswer").css({
+            
+      //                 'z-index': '2'
+      //  });
     }, time);
 
 }
     
 function checkAnswer() {
 
-    //setTimeout(function () {}, 16400);
+
     $('#audio').attr('src', 'Sounds/GoodAnswers.mp3');
 
     $("#answerA").delay(100).animate({
@@ -151,14 +155,19 @@ function checkAnswer() {
         $('#answerC p:nth-child(2)').remove();
         $('#answerD p:nth-child(2)').remove();
 
-        $("#answerA").animate({
+        $("#answerA").delay(9400).animate({
 
-            backgroundColor: 'black'
+            'backgroundColor': 'black'
         },
+        
             0);
-
+        
+        
     }, 15000);
+    
 }
+
+    
 /*function clearBoxes(){
      boxOfQuestions.shift();
      
