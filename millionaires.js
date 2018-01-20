@@ -86,7 +86,6 @@ $('body').one('click', '#allAnswers', function () {
     getAnswers(1)
     focusMusic(18400)
     showSet(0, 18400)
-    
 }); //Zdarzenie oCLICK na obiekcie jQuery
 
 
@@ -135,14 +134,15 @@ function checkAnswer() {
     $('#audio').attr('src', 'Sounds/GoodAnswers.mp3');
 
     $("#answerA").delay(100).animate({
-        backgroundColor: '#FFCF40',
-        opacity: 1,
-        color: '000000',
+        'backgroundColor': '#FFCF40',
+        'opacity': 1,
+       'color': '000000',
     }, 500);
     $("#answerA").delay(9400).animate({
-        backgroundColor: '#23E047',
+        'backgroundColor': '#23E047',
     }, 500);
-
+    
+    
     setTimeout(function () {
         $('#mainQuestion p').empty();
         $('#answerA p:nth-child(2)').remove();
@@ -150,12 +150,12 @@ function checkAnswer() {
         $('#answerC p:nth-child(2)').remove();
         $('#answerD p:nth-child(2)').remove();
 
-        $("#answerA").delay(9400).animate({
-            'backgroundColor': 'black',
-            'color': 'white'
-        }, 0);
+        
     }, 15000);
-
+    $("#answerA").delay(4800).animate({
+        'backgroundColor': '#000000',
+        'color': '#ffffff'
+    }, 0);
 }
 
 
