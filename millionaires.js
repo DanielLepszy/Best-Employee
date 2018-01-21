@@ -1,73 +1,8 @@
 var beginGame = document.getElementById('start');
-var allQuestions = {
-    "Questions": [{
-        "QuestionTitle": "Jak się nazywa twoj przyszly pracownik?",
-        "answers": [{
-            "id": "A",
-            "answerTitle": "Daniel Lepszy",
-            "isCorrectAnswer": true
-        },
-        {
-            "id": "B",
-            "answerTitle": "Elvis Presley"
-        },
-        {
-            "id": "C",
-            "answerTitle": "Violetta Villas"
-        },
-        {
-            "id": "D",
-            "answerTitle": "Mark Zuckerberg"
-        }
-        ],
-        "correctAnswerId": "A"
-    },
-    {
-        "QuestionTitle": "Kto jest najlepszy?",
-        "answers": [{
-            "id": "A",
-            "answerTitle": "Daniel ",
-            "isCorrectAnswer": true
-        },
-        {
-            "id": "B",
-            "answerTitle": "Elvis "
-        },
-        {
-            "id": "C",
-            "answerTitle": "Violetta "
-        },
-        {
-            "id": "D",
-            "answerTitle": "Mark "
-        }
-        ],
-        "correctAnswerId": "A"
-    },
-    {
-        "QuestionTitle": "Kogo zaprosisz na rozmowe kwalifikacyjna?",
-        "answers": [{
-            "id": "A",
-            "answerTitle": "Daniel Lepsz",
-            "isCorrectAnswer": true
-        },
-        {
-            "id": "B",
-            "answerTitle": "Elvis Presly"
-        },
-        {
-            "id": "C",
-            "answerTitle": "Violetta Villa"
-        },
-        {
-            "id": "D",
-            "answerTitle": "Mark Zuckerbe"
-        }
-        ],
-        "correctAnswerId": "A"
-    }
-    ]
-}
+$.getJSON("https://jsonblob.com/api/jsonBlob/45c5b49c-fee5-11e7-afd8-753750ba9bb7", function(json) {
+    console.log(json);
+});
+var allQuestions;
 var boxOfQuestions = [];
 var boxOfAnswers = [];
 var clearAnswer = document.getElementById('allAnswers');
@@ -116,7 +51,7 @@ function finishGame() {
             'transition':'all 0.4s ease'
         })
         $("#myOwnCV").css({
-            'transform':'translate(0,50px)'
+            'transform':'translate(0,20px)'
         })
         
         $("#allAnswers").delegate('img', 'mouseover mouseleave', function (e) {

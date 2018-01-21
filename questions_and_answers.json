@@ -1,0 +1,66 @@
+{
+    "Questions": [{
+        "QuestionTitle": "Jak się nazywa twoj przyszly pracownik?",
+        "answers": [{
+            "id": "A",
+            "answerTitle": "Daniel Lepszy"
+        },
+        {
+            "id": "B",
+            "answerTitle": "Elvis Presley"
+        },
+        {
+            "id": "C",
+            "answerTitle": "Violetta Villas"
+        },
+        {
+            "id": "D",
+            "answerTitle": "Mark Zuckerberg"
+        }
+        ],
+        "correctAnswerId": "A"
+    },
+    {
+        "QuestionTitle": "Kto jest najlepszy?",
+        "answers": [{
+            "id": "A",
+            "answerTitle": "Daniel "
+        },
+        {
+            "id": "B",
+            "answerTitle": "Elvis "
+        },
+        {
+            "id": "C",
+            "answerTitle": "Violetta "
+        },
+        {
+            "id": "D",
+            "answerTitle": "Mark "
+        }
+        ],
+        "correctAnswerId": "A"
+    },
+    {
+        "QuestionTitle": "Kogo zaprosisz na rozmowe kwalifikacyjna?",
+        "answers": [{
+            "id": "A",
+            "answerTitle": "Daniel Lepsz"
+        },
+        {
+            "id": "B",
+            "answerTitle": "Elvis Presly"
+        },
+        {
+            "id": "C",
+            "answerTitle": "Violetta Villa"
+        },
+        {
+            "id": "D",
+            "answerTitle": "Mark Zuckerbe"
+        }
+        ],
+        "correctAnswerId": "A"
+    }
+    ]
+}
