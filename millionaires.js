@@ -71,7 +71,7 @@ var allQuestions = {
 var boxOfQuestions = [];
 var boxOfAnswers = [];
 var clearAnswer = document.getElementById('allAnswers');
-var question;  
+  
 
 beginGame.addEventListener("click", function () {
     onStartGame()
@@ -87,8 +87,9 @@ function onStartGame() {
     // 1. Fetch all questions
     subscribeOnClick()
     fetchQuestions()
-    showCurrentQuestion()
-    showCurrentAnswers()
+    var question = boxOfQuestions.pop()
+    showCurrentQuestion(question)
+    showCurrentAnswers(question)
     // firstMusic()
     // focusMusic(6400)
     // getQuestions(0)
@@ -100,15 +101,15 @@ function fetchQuestions() {
     boxOfQuestions = allQuestions.Questions
     //todo
 };
-function showCurrentQuestion() {
+function showCurrentQuestion(question) {
     
-        question = boxOfQuestions.pop()
+        
         var questionContent = question.QuestionTitle
         $('#mainQuestion').html('<p>' + questionContent + '</p>');
         
     }
   
-function showCurrentAnswers() {
+function showCurrentAnswers(question) {
     var questionAnswers = question.answers
 
     setTimeout(function () {
@@ -137,9 +138,9 @@ function onCorrectAnswerSelected() {
     // showSet(0, 18400)
 
     clearAnswersFields()
-    
-    showCurrentQuestion()
-    showCurrentAnswers()
+    var question = boxOfQuestions.pop()
+    showCurrentQuestion(question)
+    showCurrentAnswers(question)
 };
 
 function firstMusic() {
