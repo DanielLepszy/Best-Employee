@@ -57,7 +57,6 @@ function startGame() {
     $('#allContents').remove();
 
     $('body').html(
-        '<audio id="audio" controls autoplay hidden="true"/>' +
         '<div id="toWin"></div><div id="getAid"> </div><div id="mainQuestion"></div>' +
         '<div id="allAnswers"><div id="answerA"></div> <div id="answerB"></div>' +
         '<div id="answerC"></div> <div id="answerD"></div></div>'
