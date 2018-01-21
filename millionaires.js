@@ -71,7 +71,7 @@ var allQuestions = {
 var boxOfQuestions = [];
 var boxOfAnswers = [];
 var clearAnswer = document.getElementById('allAnswers');
-  
+
 
 beginGame.addEventListener("click", function () {
     onStartGame()
@@ -88,7 +88,6 @@ function onStartGame() {
     subscribeOnClick()
     fetchQuestions()
     var question = boxOfQuestions.pop()
-    showCurrentQuestion(question)
     showCurrentAnswers(question)
     // firstMusic()
     // focusMusic(6400)
@@ -101,31 +100,70 @@ function fetchQuestions() {
     boxOfQuestions = allQuestions.Questions
     //todo
 };
-function showCurrentQuestion(question) {
-    
+function finishGame() {
+    if (boxOfQuestions.length == 0) {
+
+        $('#mainQuestion').remove();
+        $('#allAnswers div').remove();
+        $('#getAid').remove();
+        $('#toWin tr').remove();
+          
+        $('#allAnswers').html(
+            '<img id="myOwnCV" src="Images/pobrane.png">'+
+            '<img  src="Images/pobrane.png">'
+        )
+        $('#allAnswers').css({
+            'transition':'all 0.4s ease'
+        })
+        $("#myOwnCV").css({
+            'transform':'translate(0,50px)'
+        })
         
-        var questionContent = question.QuestionTitle
-        $('#mainQuestion').html('<p>' + questionContent + '</p>');
-        
+        $("#allAnswers").delegate('img', 'mouseover mouseleave', function (e) {
+            if (e.type == 'mouseover') {
+                $(this).css({
+                    'cursor': 'hand',
+                    'transform': 'scale(1.2)',
+                    'transition': 'all 0.5s ease-in-out',
+                });
+            } else {
+                $(this).css({
+                    'transform': 'scale(1.1)',
+                    'transition': 'all 0.6s ease-in-out'
+                });
+            }
+        });
+        //'transform': 'scale(2.1)',
+        //'transition': 'all 1s ease-in-out',
+
+
+        // $('#allAnswers img').delay(500).css({ 
+        //   'transform': 'scale(1.1)',
+        //   'transition': 'all 1s ease-in-out',
+        // });
     }
-  
+}
 function showCurrentAnswers(question) {
+
+
     var questionAnswers = question.answers
+    var questionContent = question.QuestionTitle
 
     setTimeout(function () {
-
+        $('#mainQuestion').html('<p>' + questionContent + '</p>');
         setTimeout(function () {
             $('#answerA .firstRowAnswer').after('<p>' + questionAnswers[0].answerTitle + '</p>')
-        }, 2000);
+        }, 1000);
         setTimeout(function () {
             $('#answerB .firstRowAnswer').after('<p>' + questionAnswers[1].answerTitle + '</p>')
-        }, 4000);
+        }, 2000);
         setTimeout(function () {
             $('#answerC .firstRowAnswer').after('<p>' + questionAnswers[2].answerTitle + '</p>')
-        }, 6000);
+        }, 3000);
         setTimeout(function () {
             $('#answerD .firstRowAnswer').after('<p>' + questionAnswers[3].answerTitle + '</p>')
-        }, 8000);
+        }, 4000);
+
     }, 0);
 }
 
@@ -138,9 +176,11 @@ function onCorrectAnswerSelected() {
     // showSet(0, 18400)
 
     clearAnswersFields()
-    var question = boxOfQuestions.pop()
-    showCurrentQuestion(question)
-    showCurrentAnswers(question)
+    finishGame()
+    if (boxOfQuestions.length != 0) {
+        var question = boxOfQuestions.pop()
+        showCurrentAnswers(question)
+    }
 };
 
 function firstMusic() {
@@ -155,7 +195,7 @@ function focusMusic(time) {
 
 
 function checkAnswer() {
-   
+
     $('#audio').attr('src', 'Sounds/GoodAnswers.mp3');
 
     $("#answerA").delay(100).animate({
@@ -167,8 +207,6 @@ function checkAnswer() {
         'backgroundColor': '#23E047',
     }, 500);
 
-    clearAnswersFields()
-
 
     $("#answerA").delay(4800).animate({
         'backgroundColor': '#000000',
@@ -178,17 +216,10 @@ function checkAnswer() {
 
 function clearAnswersFields() {
     setTimeout(function () {
-        $('#mainQuestion p').remove();
+        $('#mainQuestion p').empty();
         $('#answerA p:nth-child(2)').remove();
         $('#answerB p:nth-child(2)').remove();
         $('#answerC p:nth-child(2)').remove();
         $('#answerD p:nth-child(2)').remove();
     }, 0);
 }
-
-
-/*function clearBoxes(){
-     boxOfQuestions.shift();
-     
-     return boxOfQuestions.shift();
-} */
