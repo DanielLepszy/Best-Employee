@@ -1,14 +1,19 @@
 var beginGame = document.getElementById('start');
-$.getJSON("https://jsonblob.com/api/jsonBlob/45c5b49c-fee5-11e7-afd8-753750ba9bb7", function(json) {
-    console.log(json);
-});
 var allQuestions;
+
 var boxOfQuestions = [];
 var boxOfAnswers = [];
 var clearAnswer = document.getElementById('allAnswers');
-
+function loadJSON(){
+    var value= $.ajax({ 
+       url: 'https://raw.githubusercontent.com/DanielLepszy/Best-Employee/master/questions_and_answers.json', 
+       async: false // 
+    }).responseText;
+    return JSON.parse(value);
+ }
 
 beginGame.addEventListener("click", function () {
+    allQuestions=loadJSON()
     onStartGame()
 });
 
@@ -33,7 +38,6 @@ function onStartGame() {
 
 function fetchQuestions() {
     boxOfQuestions = allQuestions.Questions
-    //todo
 };
 function finishGame() {
     if (boxOfQuestions.length == 0) {
@@ -41,19 +45,40 @@ function finishGame() {
         $('#mainQuestion').remove();
         $('#allAnswers div').remove();
         $('#getAid').remove();
-        $('#toWin tr').remove();
-          
-        $('#allAnswers').html(
-            '<img id="myOwnCV" src="Images/pobrane.png">'+
-            '<img  src="Images/pobrane.png">'
-        )
-        $('#allAnswers').css({
-            'transition':'all 0.4s ease'
-        })
-        $("#myOwnCV").css({
-            'transform':'translate(0,20px)'
-        })
+        $('#toWin').remove();
         
+        $('#allAnswers').html(
+            '<a href="https://www.linkedin.com/in/daniel-lepszy"><img id="linkedinPicture" src="Images/Linkedinn.png"></a>'+
+            '<a href="https://github.com/DanielLepszy"><img id="githubPicture" src="Images/github.png"></a>'+
+            '<a><img id="myOwnFile"src="Images/pobrane.png"></a>'
+        )
+        $('#showRewards').css({
+            'width':'190px',
+            'height':'253px',
+        })
+        $("#allAnswers").removeClass();
+        $('#allAnswers').css({
+            'position':'absolute',
+            'transform': 'translate(5%,-30%)', 
+            'width':'70%',
+            'height':'50%',
+        })
+        $('#allAnswers img').css({
+            'position':'absolute',
+            'right':'45%',
+            'bottom':'30%'
+        })
+        $("#allAnswers").click(function(){
+        $("#githubPicture").animate({
+            'top':'-20%',
+            'position':'relative'
+        });
+        $("#linkedinPicture").animate({
+            'bottom':'-20%',
+            'position':'relative'
+            
+        });
+        });
         $("#allAnswers").delegate('img', 'mouseover mouseleave', function (e) {
             if (e.type == 'mouseover') {
                 $(this).css({
@@ -61,6 +86,7 @@ function finishGame() {
                     'transform': 'scale(1.2)',
                     'transition': 'all 0.5s ease-in-out',
                 });
+                
             } else {
                 $(this).css({
                     'transform': 'scale(1.1)',
