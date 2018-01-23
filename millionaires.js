@@ -4,16 +4,17 @@ var allQuestions;
 var boxOfQuestions = [];
 var boxOfAnswers = [];
 var clearAnswer = document.getElementById('allAnswers');
-function loadJSON(){
-    var value= $.ajax({ 
-       url: 'https://raw.githubusercontent.com/DanielLepszy/Best-Employee/master/questions_and_answers.json', 
-       async: false // 
+var amountofClick=0;
+function loadJSON() {
+    var value = $.ajax({
+        url: 'https://raw.githubusercontent.com/DanielLepszy/Best-Employee/master/questions_and_answers.json',
+        async: false // 
     }).responseText;
     return JSON.parse(value);
- }
+}
 
 beginGame.addEventListener("click", function () {
-    allQuestions=loadJSON()
+    allQuestions = loadJSON()
     onStartGame()
 });
 
@@ -29,6 +30,7 @@ function onStartGame() {
     fetchQuestions()
     var question = boxOfQuestions.pop()
     showCurrentAnswers(question)
+    supportPlayer(1)
     // firstMusic()
     // focusMusic(6400)
     // getQuestions(0)
@@ -41,52 +43,39 @@ function fetchQuestions() {
 };
 function finishGame() {
     if (boxOfQuestions.length == 0) {
-
         $('#mainQuestion').remove();
         $('#allAnswers div').remove();
         $('#getAid').remove();
         $('#toWin').remove();
-        
-        $('#allAnswers').html(
-            '<a href="https://www.linkedin.com/in/daniel-lepszy"><img id="linkedinPicture" src="Images/Linkedinn.png"></a>'+
-            '<a href="https://github.com/DanielLepszy"><img id="githubPicture" src="Images/github.png"></a>'+
-            '<a><img id="myOwnFile"src="Images/pobrane.png"></a>'
-        )
+
+        $('#allAnswers').html('<a><img id="myCV" src="Images/pobrane.png"></a>')
         $('#showRewards').css({
-            'width':'190px',
-            'height':'253px',
+            'width': '190px',
+            'height': '253px',
         })
-        $("#allAnswers").removeClass();
+
         $('#allAnswers').css({
-            'position':'absolute',
-            'transform': 'translate(5%,-30%)', 
-            'width':'70%',
-            'height':'50%',
+            'position': 'relative',
+            'top': '40%',
+            'left': '40%',
+            'width': '260px',
+            'height': '260px',
         })
         $('#allAnswers img').css({
-            'position':'absolute',
-            'right':'45%',
-            'bottom':'30%'
+            'position': 'absolute',
+            'right': '0%',
+            'bottom': '0%'
         })
-        $("#allAnswers").click(function(){
-        $("#githubPicture").animate({
-            'top':'-20%',
-            'position':'relative'
-        });
-        $("#linkedinPicture").animate({
-            'bottom':'-20%',
-            'position':'relative'
-            
-        });
-        });
+
+
         $("#allAnswers").delegate('img', 'mouseover mouseleave', function (e) {
             if (e.type == 'mouseover') {
                 $(this).css({
                     'cursor': 'hand',
-                    'transform': 'scale(1.2)',
+                    'transform': 'scale(2.2)',
                     'transition': 'all 0.5s ease-in-out',
                 });
-                
+
             } else {
                 $(this).css({
                     'transform': 'scale(1.1)',
@@ -94,15 +83,9 @@ function finishGame() {
                 });
             }
         });
-        //'transform': 'scale(2.1)',
-        //'transition': 'all 1s ease-in-out',
 
+    };
 
-        // $('#allAnswers img').delay(500).css({ 
-        //   'transform': 'scale(1.1)',
-        //   'transition': 'all 1s ease-in-out',
-        // });
-    }
 }
 function showCurrentAnswers(question) {
 
@@ -138,10 +121,12 @@ function onCorrectAnswerSelected() {
 
     clearAnswersFields()
     finishGame()
+
     if (boxOfQuestions.length != 0) {
         var question = boxOfQuestions.pop()
         showCurrentAnswers(question)
     }
+    supportPlayer(2)
 };
 
 function firstMusic() {
@@ -183,4 +168,27 @@ function clearAnswersFields() {
         $('#answerC p:nth-child(2)').remove();
         $('#answerD p:nth-child(2)').remove();
     }, 0);
+}
+function supportPlayer(m) {
+    
+    if (m == 1) {
+        $("#getAid img:nth-child(2)").one('click', function () {
+            $("#answerB p:nth-child(2)").empty();
+            $("#answerD p:nth-child(2)").empty();
+            $("#answerC p:nth-child(2)").empty();
+            amountofClick++;
+        });
+    }
+
+    else if (m == 2) {
+        $("#getAid img:nth-child(2)").one('click', function () {
+            $("#answerA p:nth-child(2)").empty();
+            $("#answerC p:nth-child(2)").empty();
+            $("#answerD p:nth-child(2)").empty();
+            amountofClick++;
+        });
+    }
+    if (amountofClick>=1){
+    $("#getAid img:nth-child(2)").remove();
+    }
 }
