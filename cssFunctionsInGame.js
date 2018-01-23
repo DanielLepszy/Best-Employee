@@ -67,7 +67,7 @@ function startGame() {
         '<img id="fifty-fifty" src="Images/polnapol.png">' +
         '<img id="friendcAid" src="Images/telefondoprzyjaciela.png">'
     );
-    $('#toWin').html('<tr><td>NR </td><td>WYGRANA</td></tr>');
+    
 
     $('#mainQuestion').html('<p></p>');
 
@@ -109,7 +109,7 @@ function startGame() {
             });
         }
     });
-
+/*
     $('#toWin').css({
         'position': 'absolute',
         'left': '50%',
@@ -142,7 +142,7 @@ function startGame() {
         'width': '240px',
         'height': '80px',
     });
-
+*/
     $('#mainQuestion').css({
         'position': 'absolute',
         'bottom': '45%',

@@ -4,7 +4,8 @@ var allQuestions;
 var boxOfQuestions = [];
 var boxOfAnswers = [];
 var clearAnswer = document.getElementById('allAnswers');
-var amountofClick=0;
+var amountofClick = 0;
+var amountClickPhoneAid = 0;
 function loadJSON() {
     var value = $.ajax({
         url: 'https://raw.githubusercontent.com/DanielLepszy/Best-Employee/master/questions_and_answers.json',
@@ -30,7 +31,8 @@ function onStartGame() {
     fetchQuestions()
     var question = boxOfQuestions.pop()
     showCurrentAnswers(question)
-    supportPlayer(1)
+    fiftyFiftySupport(1)
+    friendAidPhone()
     // firstMusic()
     // focusMusic(6400)
     // getQuestions(0)
@@ -126,7 +128,8 @@ function onCorrectAnswerSelected() {
         var question = boxOfQuestions.pop()
         showCurrentAnswers(question)
     }
-    supportPlayer(2)
+    fiftyFiftySupport(2)
+    friendAidPhone()
 };
 
 function firstMusic() {
@@ -169,8 +172,8 @@ function clearAnswersFields() {
         $('#answerD p:nth-child(2)').remove();
     }, 0);
 }
-function supportPlayer(m) {
-    
+function fiftyFiftySupport(m) {
+
     if (m == 1) {
         $("#getAid img:nth-child(2)").one('click', function () {
             $("#answerB p:nth-child(2)").empty();
@@ -188,7 +191,46 @@ function supportPlayer(m) {
             amountofClick++;
         });
     }
-    if (amountofClick>=1){
-    $("#getAid img:nth-child(2)").remove();
+    if (amountofClick >= 1) {
+        $("#getAid img:nth-child(2)").remove();
+    }
+}
+function friendAidPhone() {
+
+
+    $("#getAid img:nth-child(3)").one('click', function () {
+        amountClickPhoneAid++
+        $('#toWin').html('<p>CALL:</p><p>607-703-622</p>');
+        $('#toWin').css({
+            'position': 'absolute',
+            'transform': 'translate(75%,60%)',
+            'display': 'flex',
+            'flex-wrap': 'wrap',
+            'align-items': 'center',
+            'justify-content': 'center',
+            'width': '40%',
+            'height': '20%',
+            'border-style': 'outset ',
+            'border-width': '4px',
+            'border-color': 'black',
+            'background-color': '#0D2034',
+            'border-radius': '10%',
+            'opacity': '0.9'
+        });
+
+        $('#toWin p').css({
+            'font-size': '50px',
+            'color': 'white',
+            'line-height': '25px',
+            'font-weight': 'bold',
+            'padding': '10px'
+
+
+        });
+
+    });
+    if (amountClickPhoneAid >= 1) {
+        $("#getAid img:nth-child(3)").remove();
+
     }
 }
