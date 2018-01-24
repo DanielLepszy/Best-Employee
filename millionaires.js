@@ -31,8 +31,9 @@ function onStartGame() {
     fetchQuestions()
     var question = boxOfQuestions.pop()
     showCurrentAnswers(question)
-    fiftyFiftySupport(1)
+    fiftyFiftySupport(2)
     friendAidPhone()
+    publicVote()
     // firstMusic()
     // focusMusic(6400)
     // getQuestions(0)
@@ -173,24 +174,21 @@ function clearAnswersFields() {
     }, 0);
 }
 function fiftyFiftySupport(m) {
-
-    if (m == 1) {
-        $("#getAid img:nth-child(2)").one('click', function () {
+    $("#getAid img:nth-child(2)").one('click', function () {
+        if (m === 1) {
             $("#answerB p:nth-child(2)").empty();
             $("#answerD p:nth-child(2)").empty();
             $("#answerC p:nth-child(2)").empty();
             amountofClick++;
-        });
-    }
-
-    else if (m == 2) {
-        $("#getAid img:nth-child(2)").one('click', function () {
+        }
+        else if (m === 2) {
             $("#answerA p:nth-child(2)").empty();
-            $("#answerC p:nth-child(2)").empty();
-            $("#answerD p:nth-child(2)").empty();
+            $("#answerB p:nth-child(2)").empty();
+            $("#answerC p:nth-child(2)").empty(); 
             amountofClick++;
-        });
-    }
+        }
+    });
+
     if (amountofClick >= 1) {
         $("#getAid img:nth-child(2)").remove();
     }
@@ -234,3 +232,59 @@ function friendAidPhone() {
 
     }
 }
+function publicVote(){
+    $("#getAid img:nth-child(1)").one('click', function () {
+        $('#allAnswers').hide();
+        $('#mainQuestion').hide();
+    $('#toWin').html('<div class="rowsChart"><p>A:</p><div class="percentageOfVoters"></div></div>'+
+    '<div class="rowsChart"><p>B:</p><div class="percentageOfVoters"></div></div>'+
+    '<div class="rowsChart"><p>C:</p><div class="percentageOfVoters"></div></div>'+
+    '<div class="rowsChart"><p>D:</p><div class="percentageOfVoters"></div></div>'
+);
+$('#toWin').css({
+    'width':'60%',
+    'height':'35%',
+    'position':'absolute',
+    'top':'25%',
+    'left':'3%',
+    'border':'2px solid white',
+    'background-color':'#1f1f38',
+    'border-radius':'5%',
+    'opacity':'0.9'
+});
+    $('#toWin .rowsChart').css({
+        'display': 'flex',
+        'flex-direction': 'column',
+        'width':'50%',
+        'height':'15%',
+        'margin':'3%',
+        'padding':'5px'
+    });
+    $('.rowsChart').css({
+        'display': 'flex',
+        'flex-direction': 'row',
+        'width':'20%',
+        'height':'10%'
+        
+    })
+    $('.rowsChart p').css({
+        'color': 'gold',
+        'font-weight': 'bold',
+        'width':'15%',
+        'height':'100%',
+        'margin':'3px',
+        'font-size':'110%',
+        'padding-top':'2%'
+        
+
+    })
+    $('.rowsChart .percentageOfVoters').css({
+        'border':'3px solid #e5e5e5',
+        'background-color':'#cabce0',
+        'border-radius':'15%',
+        'height':'100%',
+        'width':'5%',
+        'margin-left':'5%'
+    })
+}
+    )}
