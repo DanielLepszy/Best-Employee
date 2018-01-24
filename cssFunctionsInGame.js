@@ -12,7 +12,9 @@ function gameInformation() {
     $('.icon').attr('src', 'Images/backarrow.png');
     $('.website').attr('href', '');
 
-    $('#startGame').html('Polecam - Daniel Lepszy  ');
+    $('#startGame').html('Prosta aplikacja webowa bazująca na słynnej grze "Milionerzy".<br> '+
+    'Zasady gry są proste: grasz dopóki nie wygrasz :) . Można korzystać tylko z jednego koła ratunkowego podczas danego pytania. '+
+'Pamiętaj, że pytania z pozoru wydają się łatwe.<br> Powodzenia !');
     $('#startGame').css({
         'margin-top': '95px',
         'border-style': 'double ',
