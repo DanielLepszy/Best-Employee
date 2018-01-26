@@ -51,25 +51,11 @@ function finishGame() {
         $('#getAid').remove();
         $('#toWin').remove();
 
-        $('#allAnswers').html('<a><img id="myCV" src="Images/pobrane.png"></a>')
-        $('#showRewards').css({
-            'width': '190px',
-            'height': '253px',
-        })
+        $('#allAnswers').html('<a><img id="myCV" src="Images/pobrane.png"></a>');
 
-        $('#allAnswers').css({
-            'position': 'relative',
-            'top': '40%',
-            'left': '40%',
-            'width': '260px',
-            'height': '260px',
-        })
-        $('#allAnswers img').css({
-            'position': 'absolute',
-            'right': '0%',
-            'bottom': '0%'
-        })
 
+        $('#allAnswers').addClass('rewardsDiv');
+        $('#allAnswers img').addClass('imageCV');
 
         $("#allAnswers").delegate('img', 'mouseover mouseleave', function (e) {
             if (e.type == 'mouseover') {
@@ -131,6 +117,7 @@ function onCorrectAnswerSelected() {
     }
     fiftyFiftySupport(2)
     friendAidPhone()
+    publicVote()
 };
 
 function firstMusic() {
@@ -184,7 +171,7 @@ function fiftyFiftySupport(m) {
         else if (m === 2) {
             $("#answerA p:nth-child(2)").empty();
             $("#answerB p:nth-child(2)").empty();
-            $("#answerC p:nth-child(2)").empty(); 
+            $("#answerC p:nth-child(2)").empty();
             amountofClick++;
         }
     });
@@ -199,92 +186,35 @@ function friendAidPhone() {
     $("#getAid img:nth-child(3)").one('click', function () {
         amountClickPhoneAid++
         $('#toWin').html('<p>CALL:</p><p>607-703-622</p>');
-        $('#toWin').css({
-            'position': 'absolute',
-            'transform': 'translate(75%,60%)',
-            'display': 'flex',
-            'flex-wrap': 'wrap',
-            'align-items': 'center',
-            'justify-content': 'center',
-            'width': '40%',
-            'height': '20%',
-            'border-style': 'outset ',
-            'border-width': '4px',
-            'border-color': 'black',
-            'background-color': '#0D2034',
-            'border-radius': '10%',
-            'opacity': '0.9'
-        });
+        $('#toWin').addClass('phoneStyles');
+        $('#toWin p').addClass('phoheNumberStyles');
 
-        $('#toWin p').css({
-            'font-size': '50px',
-            'color': 'white',
-            'line-height': '25px',
-            'font-weight': 'bold',
-            'padding': '10px'
+        if (amountClickPhoneAid >= 1) {
+            $("#getAid img:nth-child(3)").remove();
 
-
-        });
-
-    });
-    if (amountClickPhoneAid >= 1) {
-        $("#getAid img:nth-child(3)").remove();
-
+        }
     }
-}
-function publicVote(){
+    )
+};
+
+function publicVote() {
+    $('#toWin').empty();
     $("#getAid img:nth-child(1)").one('click', function () {
         $('#allAnswers').hide();
         $('#mainQuestion').hide();
-    $('#toWin').html('<div class="rowsChart"><p>A:</p><div class="percentageOfVoters"></div></div>'+
-    '<div class="rowsChart"><p>B:</p><div class="percentageOfVoters"></div></div>'+
-    '<div class="rowsChart"><p>C:</p><div class="percentageOfVoters"></div></div>'+
-    '<div class="rowsChart"><p>D:</p><div class="percentageOfVoters"></div></div>'
-);
-$('#toWin').css({
-    'width':'60%',
-    'height':'35%',
-    'position':'absolute',
-    'top':'25%',
-    'left':'3%',
-    'border':'2px solid white',
-    'background-color':'#1f1f38',
-    'border-radius':'5%',
-    'opacity':'0.9'
-});
-    $('#toWin .rowsChart').css({
-        'display': 'flex',
-        'flex-direction': 'column',
-        'width':'50%',
-        'height':'15%',
-        'margin':'3%',
-        'padding':'5px'
-    });
-    $('.rowsChart').css({
-        'display': 'flex',
-        'flex-direction': 'row',
-        'width':'20%',
-        'height':'10%'
-        
-    })
-    $('.rowsChart p').css({
-        'color': 'gold',
-        'font-weight': 'bold',
-        'width':'15%',
-        'height':'100%',
-        'margin':'3px',
-        'font-size':'110%',
-        'padding-top':'2%'
-        
+        $('#toWin').html('<div class="rowsChart"><p>A:</p><div class="percentageOfVoters"></div></div>' +
+            '<div class="rowsChart"><p>B:</p><div class="percentageOfVoters"></div></div>' +
+            '<div class="rowsChart"><p>C:</p><div class="percentageOfVoters"></div></div>' +
+            '<div class="rowsChart"><p>D:</p><div class="percentageOfVoters"></div></div>'
+        );
+        $('#toWin').addClass('publicVotes');
 
-    })
-    $('.rowsChart .percentageOfVoters').css({
-        'border':'3px solid #e5e5e5',
-        'background-color':'#cabce0',
-        'border-radius':'15%',
-        'height':'100%',
-        'width':'5%',
-        'margin-left':'5%'
+        $('#toWin .rowsChart').addClass('publicVoteChart');
+
+        $('.rowsChart').addClass('publicVoteRowChart');
+
+        $('.rowsChart p').addClass('publicVoteAnswers');
+
+        $('.rowsChart .percentageOfVoters').addClass('publicVoteProperAnswer');
     })
 }
-    )}
