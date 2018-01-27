@@ -1,6 +1,6 @@
 var beginGame = document.getElementById('start');
 var allQuestions;
-
+var aidRounds=0;
 var boxOfQuestions = [];
 var boxOfAnswers = [];
 var clearAnswer = document.getElementById('allAnswers');
@@ -114,10 +114,11 @@ function onCorrectAnswerSelected() {
         currentQuestion = boxOfQuestions.pop()
         showCurrentAnswers(currentQuestion)
     }
+    if (aidRounds === 0){
     subscribeForfiftyFiftyAid()
     friendAidPhone()
     publicVote()
-};
+    }
 
 function firstMusic() {
     $('#audio').attr('src', 'Sounds/Begin.mp3');
@@ -151,6 +152,7 @@ function checkAnswer() {
 }
 
 function clearAnswersFields() {
+    aidRounds=0;
     setTimeout(function () {
         $('#mainQuestion p').empty();
         $('#answerA p:nth-child(2)').remove();
@@ -160,63 +162,78 @@ function clearAnswersFields() {
     }, 0);
 }
 function subscribeForfiftyFiftyAid() {
-    $("#getAid img:nth-child(2)").one('click', function () {
-        var correctAnswerId = currentQuestion.correctAnswerId;
-        var currentAnswerArray = currentQuestion.answers;
-        currentAnswerArray.forEach(answer => {
-            if (answer.id !== correctAnswerId) {
-                $("#answer" + answer.id + " p:nth-child(2)").empty();
-            }
+    
+        $("#getAid img:nth-child(2)").one('click', function () {
+            aidRounds++;
+            var correctAnswerId = currentQuestion.correctAnswerId;
+            var currentAnswerArray = currentQuestion.answers;
+            currentAnswerArray.forEach(answer => {
+                if (answer.id !== correctAnswerId) {
+                    $("#answer" + answer.id + " p:nth-child(2)").empty();
+                }
+
+            });
+            $("#getAid img:nth-child(2)").addClass('usedAidStyle');
+
 
         });
-        $("#getAid img:nth-child(2)").addClass('usedAidStyle');
-
-    });
-}
+        
+    }
+ 
 function friendAidPhone() {
 
+        $("#getAid img:nth-child(3)").one('click', function () {
+            aidRounds++;
+            $('#toWin').html('<p>Przyjaciel mówi:</p><p>To z pewnością Daniel Lepszy !</p>');
+            $('#toWin').addClass('phoneStyles');
+            $('#toWin p').addClass('phoheNumberStyles');
+            $("#getAid img:nth-child(3)").addClass('usedAidStyle');
+           
 
-    $("#getAid img:nth-child(3)").one('click', function () {
-        $('#toWin').html('<p>Przyjaciel mówi:</p><p>To z pewnością Daniel Lepszy !</p>');
-        $('#toWin').addClass('phoneStyles');
-        $('#toWin p').addClass('phoheNumberStyles');
-        $("#getAid img:nth-child(3)").addClass('usedAidStyle');
-
-
-    }
-    )
+        }
+        )
+    
 };
 
 function publicVote() {
-    $('#toWin').empty();
-    $("#getAid img:nth-child(1)").one('click', function () {
-        $('#allAnswers').hide();
-        $('#mainQuestion').hide();
-        $('#toWin').html('<div class="rowsChart">' +
-            '<p class="answer>A:</p><div class="percentageOfVoters"></div></div>' +
-            '<div class="rowsChart"><p>B:</p><div class="percentageOfVoters"></div></div>' +
-            '<div class="rowsChart"><p>C:</p><div class="percentageOfVoters"></div></div>' +
-            '<div class="rowsChart"><p>D:</p><div class="percentageOfVoters"></div></div>'
-        );
-        $('#toWin').addClass('publicVotes');
+        $('#toWin').empty();
+        $("#getAid img:nth-child(1)").one('click', function () {
+            aidRounds++;
+            $('#allAnswers').hide();
+            $('#mainQuestion').hide();
+            $('#toWin').html('<div class="rowsChart">' +
+                '<p>A:</p><div class="percentageOfVoters" id="properA"></div></div>' +
+                '<div class="rowsChart">' +
+                '<p >B:</p><div class="percentageOfVoters" id="properB"></div></div>' +
+                '<div class="rowsChart">' +
+                '<p >C:</p><div class="percentageOfVoters" id="properC"></div></div>' +
+                '<div class="rowsChart">' +
+                '<p >D:</p><div class="percentageOfVoters" id="properD"></div></div>'
+            );
+            $('#toWin').addClass('publicVotes');
 
-        $('#toWin .rowsChart').addClass('publicVoteChart');
+            $('#toWin .rowsChart').addClass('publicVoteChart');
 
-        $('.rowsChart').addClass('publicVoteRowChart');
+            $('.rowsChart').addClass('publicVoteRowChart');
 
-        $('.rowsChart p').addClass('publicVoteAnswers');
+            $('.rowsChart p').addClass('publicVoteAnswers');
 
-        $('.rowsChart .percentageOfVoters').addClass('publicVoteProperAnswer');
+            $('.rowsChart .percentageOfVoters').addClass('publicVoteProperAnswer');
 
-        var correctAnswerId = currentQuestion.correctAnswerId;
-        var currentAnswerArray = currentQuestion.answers;
-        currentAnswerArray.forEach(answer => {
-            if (answer.id !== correctAnswerId) {
-                $("#toWin.rowsChart p" + answer.id + " p:nth-child(2)").empty();
-            }
+            var correctAnswerId = currentQuestion.correctAnswerId;
+            var currentAnswerArray = currentQuestion.answers;
+            currentAnswerArray.forEach(answer => {
+                if (answer.id === correctAnswerId) {
+                    $("#proper" + answer.id).addClass('properChart');
+                }
 
+            });
+            $("#getAid img:nth-child(1)").addClass('usedAidStyle');
+            setTimeout(function () {
+                $('#toWin').hide();
+                $('#allAnswers').show();
+                $('#mainQuestion').show();
+            }, 5000)
         });
-        $("#getAid img:nth-child(2)").addClass('usedAidStyle');
-
-    });
+    
 }
