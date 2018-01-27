@@ -25,7 +25,7 @@ function subscribeOnClick() {
 }
 
 function onStartGame() {
-    // 1. Fetch all questions
+
     subscribeOnClick()
     fetchQuestions()
     currentQuestion = boxOfQuestions.pop()
@@ -33,8 +33,9 @@ function onStartGame() {
     subscribeForFiftyFiftyAid()
     friendAidPhone()
     publicVote()
-    // firstMusic()
-    // focusMusic(6400)
+
+    firstMusic()
+    focusMusic(6400)
     // getQuestions(0)
     // getAnswers(0)
     // showSet(0, 6400)
@@ -153,6 +154,7 @@ function checkAnswer() {
 
 function clearAnswersFields() {
     isAidUsedInThatRound = false;
+    $('.alertAboutAmountofAid').remove();
     setTimeout(function () {
         $('#mainQuestion p').empty();
         $('#answerA p:nth-child(2)').remove();
@@ -162,7 +164,7 @@ function clearAnswersFields() {
     }, 0);
 }
 function onFiftyFiftyPressed() {
-    if (isAidUsedInThatRound) { return }
+    if (isAidUsedInThatRound) { return showAlertAboutAmountOfAidOnRound() }
     isAidUsedInThatRound = true;
     var correctAnswerId = currentQuestion.correctAnswerId;
     var currentAnswerArray = currentQuestion.answers;
@@ -179,7 +181,7 @@ function subscribeForFiftyFiftyAid() {
     $("#getAid img:nth-child(2)").one('click', onFiftyFiftyPressed)
 }
 function onFriendAidPhonePressed() {
-    if (isAidUsedInThatRound) { return }
+    if (isAidUsedInThatRound) { return showAlertAboutAmountOfAidOnRound() }
     isAidUsedInThatRound = true;
     $('#toWin').html('<p>Przyjaciel mówi:</p><p>To z pewnością Daniel Lepszy !</p>');
     $('#toWin').addClass('phoneStyles');
@@ -207,12 +209,12 @@ function showPublicVoteChart() {
     $('.rowsChart p').addClass('publicVoteAnswers');
     $('.rowsChart .percentageOfVoters').addClass('publicVoteProperAnswer');
 }
-function hideQuestionAndAnswers(){
+function hideQuestionAndAnswers() {
     $('#allAnswers').hide();
     $('#mainQuestion').hide();
 
 }
-function animatePublicVoteInChart(){
+function animatePublicVoteInChart() {
     var correctAnswerId = currentQuestion.correctAnswerId;
     var currentAnswerArray = currentQuestion.answers;
     currentAnswerArray.forEach(answer => {
@@ -223,24 +225,31 @@ function animatePublicVoteInChart(){
     });
     $("#getAid img:nth-child(1)").addClass('usedAidStyle');
 }
-function showQuestionAndAnswers(){
+function showQuestionAndAnswers() {
     setTimeout(function () {
         $('#toWin').hide();
         $('#allAnswers').show();
         $('#mainQuestion').show();
-    }, 25000)
+    }, 5000)
+}
+function showAlertAboutAmountOfAidOnRound() {
+    $('body').append('<div class="alertAboutAmountofAid"> <p>'+
+    'Możesz użyć tylko jednego koła ratunkowego podczas pytania !</p></div>');
+    $('.alertAboutAmountofAid').addClass('alertAboutAidInRound');
+    $('.alertAboutAmountofAid p').addClass('alertAidContent');
 }
 
 function onPublicVotePressed() {
-    if (isAidUsedInThatRound) { return }
+    if (isAidUsedInThatRound) { return showAlertAboutAmountOfAidOnRound() }
     isAidUsedInThatRound = true;
+    if (isAidUsedInThatRound)
 
-    hideQuestionAndAnswers();
+        hideQuestionAndAnswers();
     showPublicVoteChart();
     animatePublicVoteInChart();
     showQuestionAndAnswers();
 }
-   
+
 function publicVote() {
     $("#getAid img:nth-child(1)").one('click', onPublicVotePressed)
 }

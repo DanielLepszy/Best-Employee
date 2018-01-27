@@ -23,7 +23,7 @@ function gameInformation() {
 function gameAward() {
     $('#mainLogo img:nth-child(2)').remove();
     $('.firstOptions').remove();
-    $('.icon').attr('src','Images/backarrow.png');
+    $('.icon').attr('src', 'Images/backarrow.png');
     $('.website').attr('href', '');
 
     $('#startGame').addClass('gameAwardsStyles');
@@ -75,78 +75,16 @@ function startGame() {
         }
     });
 
-    $('#mainQuestion').css({
-        'position': 'absolute',
-        'bottom': '45%',
-        'left': '10%',
-        'width': '80%',
-        'height': '15%',
-        'border': '3px solid #A2BBCD',
-        'border-radius': '30%',
-        'background-color': 'black',
-        'opacity': '0.95',
-        'color': 'white',
-        'font-size': '30px',
-        'display': 'flex',
-        'flex-wrap': 'wrap',
-        'align-items': 'center',
-        'justify-content': 'center',
-        'margin': '0px'
-    });
+    $('#mainQuestion').addClass('positionOfMainQuestion');
 
-    $('#mainQuestion p').css({
-        'position': 'absolute',
-        'width': '100%',
-        'height': '100%',
+    $('#mainQuestion p').addClass('positionOfContentQuestion');
 
-    });
-    $('#allAnswers').css({
-        'position': 'absolute',
-        'display': 'flex',
-        'flex-wrap': 'wrap',
-        'align-items': 'center',
-        'justify-content': 'center',
-        'bottom': '3%',
-        'left': '10%',
-        'width': '80%',
-        'height': '40%',
-        'color': 'white',
-        'font-size': '30px',
-        'font-weight': 'bold',
-        'text-align': 'left',
-        'text-indent': '16px',
-    });
+    $('#allAnswers').addClass('positionOfAnswers');
 
-    $('#allAnswers div').css({
-        'display': 'flex',
-        'border': '5px solid black',
-        'width': '48%',
-        'height': '40%',
-        'margin': '5px',
-        'border': '3px solid #A2BBCD',
-        'border-radius': '30%',
-        'background-color': 'black',
-        'opacity': '0.95',
-        'cursor': 'hand',
-        'align-items': 'center',
-        'justify-content': 'left',
-    });
+    $('#allAnswers div').addClass('positionOfContentAnswers');
 
+    $('#allAnswers p:nth-child(1) ').addClass('styleOfFirstContentAnswers');
 
-    $('#allAnswers p:nth-child(1) ').css({
-        'z-index': '2',
-        'color': 'gold',
-        'font-size': '30px',
-        'font-weight': 'bold',
-    });
-    $('#allAnswers p:nth-child(2) ').css({
-
-        'position': 'absolute',
-        'top': '59%',
-        'color': 'red',
-        'font-size': '30px',
-        'font-weight': 'bold',
-    });
-
+    $('#allAnswers p:nth-child(2) ').addClass('styleOfSecondContentAnswers');
 
 }
