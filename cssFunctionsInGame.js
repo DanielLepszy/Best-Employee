@@ -20,8 +20,9 @@ function gameInformation() {
 }
 
 function gameAward() {
+    $('#mainLogo img:nth-child(2)').remove();
     $('.firstOptions').remove();
-    $('.icon').attr('src', 'Images/backarrow.png');
+    $('.icon').attr('src','Images/backarrow.png');
     $('.website').attr('href', '');
 
     $('#startGame').addClass('gameAwardsStyles');
