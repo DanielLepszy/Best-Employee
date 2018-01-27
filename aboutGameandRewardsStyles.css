@@ -2,17 +2,18 @@
 {
     margin-top: 95px;
     border-style: double ;
-    border-width: 9px;
+    border-width: 11px;
     border-color: #7098C5;
     position: absolute;
     width: auto;
-    height: 200px;
+    height: auto;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     color: white;
     padding: 20px;
-    font-size: 19px;
+    font-size: 25px;
+    text-align: center;
     background-color: black;
     border-radius: 8%;
     transition: all 0.9s ease-in-out

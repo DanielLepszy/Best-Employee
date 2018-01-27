@@ -8,13 +8,14 @@ aboutGame.addEventListener("click", function () { gameInformation() });
 
 
 function gameInformation() {
+    $('#mainLogo img:nth-child(2)').remove();
     $('.firstOptions').remove();
     $('.icon').attr('src', 'Images/backarrow.png');
     $('.website').attr('href', '');
 
     $('#startGame').html('Prosta aplikacja webowa bazująca na słynnej grze "Milionerzy".<br> ' +
-        'Zasady gry są proste: grasz dopóki nie wygrasz :) . Można korzystać tylko z jednego koła ratunkowego podczas danego pytania. ' +
-        'Pamiętaj, że pytania z pozoru wydają się łatwe.<br> Powodzenia !');
+        'Zasady gry są proste: grasz dopóki nie wygrasz :).<br>Można korzystać tylko z jednego koła ratunkowego podczas danego pytania.<br>' +
+        'Pamiętaj, że pytania z pozoru wydają się łatwe.<br><br> Powodzenia !');
 
     $('#startGame').addClass('gameInformationsStyles');
 }
@@ -51,20 +52,9 @@ function startGame() {
     $('#answerC').html('<p class="firstRowAnswer">C:</p>');
     $('#answerD').html('<p class="firstRowAnswer">D:</p>');
 
-    $('body').css({
-        'background': 'url(Images/background2.png)',
-        'background-size': 'cover'
-    });
+    $('body').addClass('imageBackground');
 
-    $('#getAid').css({
-        'position': 'absolute',
-        'right': '65px',
-        'display': 'flex',
-        'flex-direction': 'row',
-        'width': '480px',
-        'height': '100px',
-        'background-size': 'cover',
-    });
+    $('#getAid').addClass('positionsOfThreeAids');
 
     $('#getAid img').css({
         'padding': '12px',

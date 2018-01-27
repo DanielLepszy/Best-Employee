@@ -1,0 +1,15 @@
+.imageBackground
+{
+    background:url('Images/background2.png');
+    background-size: cover;
+}
+.positionsOfThreeAids
+{
+    position: absolute;
+    right: 65px;
+    display: flex;
+    flex-direction: row;
+    width: 480px;
+    height: 100px;
+    background-size: cover;
+}
