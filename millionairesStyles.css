@@ -84,106 +84,6 @@ transition: all 0.6s ease-in-out;
     font-size:15px;
  } 
 }
-/* SupporPlater  */ 
-
-.phoneStyles
-{
-    position: absolute;
-    transform: translate(75%,60%) ;
-    display:flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    width: 40%;
-    height: 20%;
-    border-style: outset ;
-    border-width: 4px;
-    border-color: black;
-    background-color: #0D2034;
-    border-radius: 10%;
-    opacity: 0.9
-}
-
-.phoheNumberStyles
-{
-    font-size:25px;
-     color:white ;
-     line-height:5px ;
-     font-weight:bold ;
-     padding:10px ;
-}
-
-.publicVotes
-{
-    width:50%;
-    height:37%;
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    border:2px solid white;
-    background-color:#1f1f38;
-    border-radius:5%;
-    opacity:0.9;
-   
-}
-.publicVoteChart
-{
-    display: flex;
-    flex-direction: row;
-    width:50%;
-    height:15%;
-    margin:3%;
-    padding:5px;
-}
-.publicVoteRowChart
-{
-    display: flex;
-    flex-direction: row;
-    width:80%;
-    height:10%;
-    
-}
-.publicVoteAnswers
-{
-    color: gold;
-    font-weight: bold;
-    width:5%;
-    height:100%;
-    margin:3px;
-    font-size:110%;
-    padding-top:2%
-    
-}
-.publicVoteProperAnswer
-{
-    border:3px solid #e5e5e5;
-    background-color:#cabce0;
-    border-radius:15%;
-    height:100%;
-    width:1%;
-    margin-left:5%;
-   
-}
-.properChart
-{
-    animation-name:animationChart;
-    animation-duration:2s;
-    width:90%;
-}
-@keyframes animationChart {
-    from {width:1%}
-    to {width:90%}
-    }
- 
-.usedAidStyle
-{
-opacity:0.45;
-cursor: default;
-pointer-events: none;
-}
-
-
 /* Finish Game function  */ 
 
 .rewardsDiv
@@ -199,6 +99,4 @@ pointer-events: none;
     display:flex;
     align-items: center;
     justify-content:center;
-
-    
 }

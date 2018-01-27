@@ -1,0 +1,33 @@
+.gameInformationsStyles
+{
+    margin-top: 95px;
+    border-style: double ;
+    border-width: 9px;
+    border-color: #7098C5;
+    position: absolute;
+    width: auto;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+    padding: 20px;
+    font-size: 19px;
+    background-color: black;
+    border-radius: 8%;
+    transition: all 0.9s ease-in-out
+}
+.gameAwardsStyles
+{
+    margin-top: 155px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: url(Images/bestemployee.png);
+    width: 390px;
+    height: 341px;
+    background-repeat: no-repeat;
+    border-radius: 8%;
+    transition: all 0.9s ease-in-out
+}

@@ -12,47 +12,19 @@ function gameInformation() {
     $('.icon').attr('src', 'Images/backarrow.png');
     $('.website').attr('href', '');
 
-    $('#startGame').html('Prosta aplikacja webowa bazująca na słynnej grze "Milionerzy".<br> '+
-    'Zasady gry są proste: grasz dopóki nie wygrasz :) . Można korzystać tylko z jednego koła ratunkowego podczas danego pytania. '+
-'Pamiętaj, że pytania z pozoru wydają się łatwe.<br> Powodzenia !');
-    $('#startGame').css({
-        'margin-top': '95px',
-        'border-style': 'double ',
-        'border-width': '9px',
-        'border-color': '#7098C5',
-        'position': 'absolute',
-        'width': 'auto',
-        'height': '200px',
-        'top': '50%',
-        'left': '50%',
-        'transform': 'translate(-50%,-50%)',
-        'color': 'white',
-        'padding': '20px',
-        'font-size': '19px',
-        'background-color': 'black',
-        'border-radius': '8%',
-        'transition': 'all 0.9s ease-in-out'
-    });
+    $('#startGame').html('Prosta aplikacja webowa bazująca na słynnej grze "Milionerzy".<br> ' +
+        'Zasady gry są proste: grasz dopóki nie wygrasz :) . Można korzystać tylko z jednego koła ratunkowego podczas danego pytania. ' +
+        'Pamiętaj, że pytania z pozoru wydają się łatwe.<br> Powodzenia !');
 
+    $('#startGame').addClass('gameInformationsStyles');
 }
+
 function gameAward() {
     $('.firstOptions').remove();
     $('.icon').attr('src', 'Images/backarrow.png');
     $('.website').attr('href', '');
-    $('#startGame').css({
-        'margin-top': '155px',
-        'position': 'absolute',
-        'top': '50%',
-        'left': '50%',
-        'transform': 'translate(-50%,-50%)',
-        'background': 'url(Images/bestemployee.png)',
-        'width': '390px',
-        'height': '341px',
-        'background-repeat': 'no-repeat',
-        'border-radius': '8%',
-        'transition': 'all 0.9s ease-in-out'
 
-    });
+    $('#startGame').addClass('gameAwardsStyles');
 }
 //Code after begin game//
 function startGame() {
@@ -69,7 +41,7 @@ function startGame() {
         '<img id="fifty-fifty" src="Images/polnapol.png">' +
         '<img id="friendcAid" src="Images/telefondoprzyjaciela.png">'
     );
-    
+
 
     $('#mainQuestion').html('<p></p>');
 
@@ -167,18 +139,14 @@ function startGame() {
         'cursor': 'hand',
         'align-items': 'center',
         'justify-content': 'left',
-        
-       
     });
 
 
     $('#allAnswers p:nth-child(1) ').css({
-        'z-index':'2',
+        'z-index': '2',
         'color': 'gold',
         'font-size': '30px',
         'font-weight': 'bold',
-        
-
     });
     $('#allAnswers p:nth-child(2) ').css({
 
