@@ -106,7 +106,7 @@ transition: all 0.6s ease-in-out;
 
 .phoheNumberStyles
 {
-    font-size:50px;
+    font-size:25px;
      color:white ;
      line-height:5px ;
      font-weight:bold ;
@@ -180,4 +180,8 @@ transition: all 0.6s ease-in-out;
     justify-content:center;
 
     
+}
+.usedAidStyle
+{
+opacity:0.45;
 }

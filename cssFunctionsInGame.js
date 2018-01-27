@@ -111,40 +111,7 @@ function startGame() {
             });
         }
     });
-/*
-    $('#toWin').css({
-        'position': 'absolute',
-        'left': '50%',
-        'top': '30%',
-        'transform': 'translate(-50%,-50%)',
-        'width': '280px',
-        'height': '80px',
-        'border-style': 'outset ',
-        'border-width': '4px',
-        'border-color': 'black',
-        'background-color': '#0D2034',
-        'border-radius': '10%',
-        'opacity': '0.9'
-    });
 
-    $('#toWin tr').css({
-        'font-size': '20px',
-        'color': 'white',
-        'line-height': '60px',
-        'font-weight': 'bold'
-
-    });
-    $('#toWin td:nth-child(1)').css({
-        'padding': '8px',
-        'width': '40px',
-        'height': '80px',
-    });
-    $('#toWin td:nth-child(2)').css({
-        'text-align': 'center',
-        'width': '240px',
-        'height': '80px',
-    });
-*/
     $('#mainQuestion').css({
         'position': 'absolute',
         'bottom': '45%',

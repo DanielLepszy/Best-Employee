@@ -4,8 +4,7 @@ var allQuestions;
 var boxOfQuestions = [];
 var boxOfAnswers = [];
 var clearAnswer = document.getElementById('allAnswers');
-var amountofClick = 0;
-var amountClickPhoneAid = 0;
+var currentQuestion;
 function loadJSON() {
     var value = $.ajax({
         url: 'https://raw.githubusercontent.com/DanielLepszy/Best-Employee/master/questions_and_answers.json',
@@ -29,9 +28,9 @@ function onStartGame() {
     // 1. Fetch all questions
     subscribeOnClick()
     fetchQuestions()
-    var question = boxOfQuestions.pop()
-    showCurrentAnswers(question)
-    fiftyFiftySupport(2)
+    currentQuestion = boxOfQuestions.pop()
+    showCurrentAnswers(currentQuestion)
+    subscribeForfiftyFiftyAid()
     friendAidPhone()
     publicVote()
     // firstMusic()
@@ -112,10 +111,10 @@ function onCorrectAnswerSelected() {
     finishGame()
 
     if (boxOfQuestions.length != 0) {
-        var question = boxOfQuestions.pop()
-        showCurrentAnswers(question)
+        currentQuestion = boxOfQuestions.pop()
+        showCurrentAnswers(currentQuestion)
     }
-    fiftyFiftySupport(2)
+    subscribeForfiftyFiftyAid()
     friendAidPhone()
     publicVote()
 };
@@ -160,39 +159,30 @@ function clearAnswersFields() {
         $('#answerD p:nth-child(2)').remove();
     }, 0);
 }
-function fiftyFiftySupport(m) {
+function subscribeForfiftyFiftyAid() {
     $("#getAid img:nth-child(2)").one('click', function () {
-        if (m === 1) {
-            $("#answerB p:nth-child(2)").empty();
-            $("#answerD p:nth-child(2)").empty();
-            $("#answerC p:nth-child(2)").empty();
-            amountofClick++;
-        }
-        else if (m === 2) {
-            $("#answerA p:nth-child(2)").empty();
-            $("#answerB p:nth-child(2)").empty();
-            $("#answerC p:nth-child(2)").empty();
-            amountofClick++;
-        }
-    });
+        var correctAnswerId = currentQuestion.correctAnswerId;
+        var currentAnswerArray = currentQuestion.answers;
+        currentAnswerArray.forEach(answer => {
+            if (answer.id !== correctAnswerId) {
+                $("#answer" + answer.id + " p:nth-child(2)").empty();
+            }
 
-    if (amountofClick >= 1) {
-        $("#getAid img:nth-child(2)").remove();
-    }
+        });
+        $("#getAid img:nth-child(2)").addClass('usedAidStyle');
+
+    });
 }
 function friendAidPhone() {
 
 
     $("#getAid img:nth-child(3)").one('click', function () {
-        amountClickPhoneAid++
-        $('#toWin').html('<p>CALL:</p><p>607-703-622</p>');
+        $('#toWin').html('<p>Przyjaciel mówi:</p><p>To z pewnością Daniel Lepszy !</p>');
         $('#toWin').addClass('phoneStyles');
         $('#toWin p').addClass('phoheNumberStyles');
+        $("#getAid img:nth-child(3)").addClass('usedAidStyle');
 
-        if (amountClickPhoneAid >= 1) {
-            $("#getAid img:nth-child(3)").remove();
 
-        }
     }
     )
 };
@@ -202,7 +192,8 @@ function publicVote() {
     $("#getAid img:nth-child(1)").one('click', function () {
         $('#allAnswers').hide();
         $('#mainQuestion').hide();
-        $('#toWin').html('<div class="rowsChart"><p>A:</p><div class="percentageOfVoters"></div></div>' +
+        $('#toWin').html('<div class="rowsChart">' +
+            '<p class="answer>A:</p><div class="percentageOfVoters"></div></div>' +
             '<div class="rowsChart"><p>B:</p><div class="percentageOfVoters"></div></div>' +
             '<div class="rowsChart"><p>C:</p><div class="percentageOfVoters"></div></div>' +
             '<div class="rowsChart"><p>D:</p><div class="percentageOfVoters"></div></div>'
@@ -216,5 +207,16 @@ function publicVote() {
         $('.rowsChart p').addClass('publicVoteAnswers');
 
         $('.rowsChart .percentageOfVoters').addClass('publicVoteProperAnswer');
-    })
+
+        var correctAnswerId = currentQuestion.correctAnswerId;
+        var currentAnswerArray = currentQuestion.answers;
+        currentAnswerArray.forEach(answer => {
+            if (answer.id !== correctAnswerId) {
+                $("#toWin.rowsChart p" + answer.id + " p:nth-child(2)").empty();
+            }
+
+        });
+        $("#getAid img:nth-child(2)").addClass('usedAidStyle');
+
+    });
 }
