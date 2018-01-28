@@ -1,4 +1,5 @@
 var beginGame = document.getElementById('start');
+var audioFocus;
 var allQuestions;
 var isAidUsedInThatRound = false;
 var boxOfQuestions = [];
@@ -29,7 +30,7 @@ function onStartGame() {
     subscribeOnClick()
     fetchQuestions()
     currentQuestion = boxOfQuestions.pop()
-    showCurrentAnswers(currentQuestion)
+    showCurrentAnswers(currentQuestion,6400)
     subscribeForFiftyFiftyAid()
     friendAidPhone()
     publicVote()
@@ -76,7 +77,7 @@ function finishGame() {
     };
 
 }
-function showCurrentAnswers(question) {
+function showCurrentAnswers(question,time) {
 
 
     var questionAnswers = question.answers
@@ -86,26 +87,26 @@ function showCurrentAnswers(question) {
         $('#mainQuestion').html('<p>' + questionContent + '</p>');
         setTimeout(function () {
             $('#answerA .firstRowAnswer').after('<p>' + questionAnswers[0].answerTitle + '</p>')
-        }, 1000);
-        setTimeout(function () {
-            $('#answerB .firstRowAnswer').after('<p>' + questionAnswers[1].answerTitle + '</p>')
         }, 2000);
         setTimeout(function () {
+            $('#answerB .firstRowAnswer').after('<p>' + questionAnswers[1].answerTitle + '</p>')
+        }, 4000);
+        setTimeout(function () {
             $('#answerC .firstRowAnswer').after('<p>' + questionAnswers[2].answerTitle + '</p>')
-        }, 3000);
+        }, 6000);
         setTimeout(function () {
             $('#answerD .firstRowAnswer').after('<p>' + questionAnswers[3].answerTitle + '</p>')
-        }, 4000);
+        }, 8000);
 
-    }, 0);
+    }, time);
 }
 
 
 function onCorrectAnswerSelected() {
-    // checkAnswer()
+    checkAnswer()
     // getQuestions(1)
     // getAnswers(1)
-    // focusMusic(18400)
+    focusMusic(14000)
     // showSet(0, 18400)
 
     clearAnswersFields()
@@ -113,7 +114,7 @@ function onCorrectAnswerSelected() {
 
     if (boxOfQuestions.length != 0) {
         currentQuestion = boxOfQuestions.pop()
-        showCurrentAnswers(currentQuestion)
+        showCurrentAnswers(currentQuestion,14000)
     }
 
     subscribeForFiftyFiftyAid()
@@ -122,31 +123,35 @@ function onCorrectAnswerSelected() {
 
 }
 function firstMusic() {
-    $('#audio').attr('src', 'Sounds/Begin.mp3');
+    var audio = new Audio('Sounds/Begin.mp3');
+    audio.play();
 }
 
 function focusMusic(time) {
     setTimeout(function () {
-        $('#audio').attr('src', 'Sounds/FocusSound.mp3');
+        audioFocus = new Audio('Sounds/FocusSound.mp3');
+        audioFocus.loop = true;
+        audioFocus.play();
     }, time);
 };
 
 
 function checkAnswer() {
-
-    $('#audio').attr('src', 'Sounds/GoodAnswers.mp3');
+    audioFocus.pause();
+    var audio = new Audio('Sounds/GoodAnswers.mp3');
+    audio.play()
 
     $("#answerA").delay(100).animate({
         'backgroundColor': '#FFCF40',
         'opacity': 1,
         'color': '000000',
     }, 500);
-    $("#answerA").delay(9400).animate({
+    $("#answerA").delay(5000).animate({
         'backgroundColor': '#23E047',
     }, 500);
 
 
-    $("#answerA").delay(4800).animate({
+    $("#answerA").delay(3800).animate({
         'backgroundColor': '#000000',
         'color': '#ffffff'
     }, 0);
@@ -161,7 +166,7 @@ function clearAnswersFields() {
         $('#answerB p:nth-child(2)').remove();
         $('#answerC p:nth-child(2)').remove();
         $('#answerD p:nth-child(2)').remove();
-    }, 0);
+    }, 10000);
 }
 function onFiftyFiftyPressed() {
     if (isAidUsedInThatRound) { return showAlertAboutAmountOfAidOnRound() }
