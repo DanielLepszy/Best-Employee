@@ -30,7 +30,7 @@ function onStartGame() {
     subscribeOnClick()
     fetchQuestions()
     currentQuestion = boxOfQuestions.pop()
-    showCurrentAnswers(currentQuestion,6400)
+    showCurrentAnswers(currentQuestion, 6400)
     subscribeForFiftyFiftyAid()
     friendAidPhone()
     publicVote()
@@ -48,22 +48,23 @@ function fetchQuestions() {
 function finishGame() {
     if (boxOfQuestions.length == 0) {
         setTimeout(function () {
-        $('#mainQuestion').remove();
-        $('#allAnswers div').remove();
-        $('#getAid').remove();
-        $('#toWin').remove();
+            $('#mainQuestion').remove();
+            $('#allAnswers div').remove();
+            $('#getAid').remove();
+            $('#toWin').remove();
 
-        $('#allAnswers').html('<a><img id="myCV" src="Images/pobrane.png"></a>');
+            $('#allAnswers').html('<a><img id="myCV" src="Images/pobrane.png"></a>');
 
+            $('#allAnswers').addClass('rewardsDiv');
 
-        $('#allAnswers').addClass('rewardsDiv');
-        $('#allAnswers img').addClass('imageCV');
-    }, 5000);
+            $('#allAnswers img').addClass('imageCV');
+
+        }, 5000);
         $("#allAnswers").delegate('img', 'mouseover mouseleave', function (e) {
             if (e.type == 'mouseover') {
                 $(this).css({
                     'cursor': 'hand',
-                    'transform': 'scale(2.2)',
+                    'transform': 'scale(1.2)',
                     'transition': 'all 0.5s ease-in-out',
                 });
 
@@ -74,11 +75,11 @@ function finishGame() {
                 });
             }
         });
-    
+
     };
 
 }
-function showCurrentAnswers(question,time) {
+function showCurrentAnswers(question, time) {
 
 
     var questionAnswers = question.answers
@@ -105,17 +106,13 @@ function showCurrentAnswers(question,time) {
 
 function onCorrectAnswerSelected() {
     checkAnswer()
-    // getQuestions(1)
-    // getAnswers(1)
     focusMusic(14000)
-    // showSet(0, 18400)
-
     clearAnswersFields()
     finishGame()
 
     if (boxOfQuestions.length != 0) {
         currentQuestion = boxOfQuestions.pop()
-        showCurrentAnswers(currentQuestion,14000)
+        showCurrentAnswers(currentQuestion, 14000)
     }
 
     subscribeForFiftyFiftyAid()
@@ -130,11 +127,11 @@ function firstMusic() {
 
 function focusMusic(time) {
     setTimeout(function () {
-        if (boxOfQuestions.length != 0){
-        audioFocus = new Audio('Sounds/FocusSound.mp3');
-        audioFocus.loop = true;
-        audioFocus.play();
-    }
+        if (boxOfQuestions.length != 0) {
+            audioFocus = new Audio('Sounds/FocusSound.mp3');
+            audioFocus.loop = true;
+            audioFocus.play();
+        }
         else {
             audioFocus = new Audio('Sounds/lastFocus.mp3');
             audioFocus.loop = true;
@@ -142,14 +139,24 @@ function focusMusic(time) {
         }
     }, time);
 };
-
-
-function checkAnswer() {
-    
+function aidAudio() {
+    audioFocus.volume = 0.1;
+    var audio = new Audio('Sounds/Aid.mp3');
+    audio.play();
+    setTimeout(function () {
+        audioFocus.volume = 1;
+    }, 6000)
+};
+function properAnswerAudio() {
     audioFocus.pause();
     var audio = new Audio('Sounds/GoodAnswers.mp3');
     audio.play();
+}
 
+function checkAnswer() {
+
+    properAnswerAudio()
+    $('#toWin').empty();
     $("#answerA").delay(100).animate({
         'backgroundColor': '#FFCF40',
         'opacity': 1,
@@ -164,13 +171,12 @@ function checkAnswer() {
         'backgroundColor': '#000000',
         'color': '#ffffff'
     }, 0);
-    if (boxOfQuestions.length == 0){
+    if (boxOfQuestions.length == 0) {
         setTimeout(function () {
-        audio.pause();
-        audio = new Audio('Sounds/lastAnswer.mp3');
-        audio.play();
-        audioFocus.loop = false;
-    }, 5000)
+            audio.pause();
+            audio = new Audio('Sounds/lastAnswer.mp3');
+            audio.play();
+        }, 5000)
     }
 }
 
@@ -187,31 +193,41 @@ function clearAnswersFields() {
 }
 function onFiftyFiftyPressed() {
     if (isAidUsedInThatRound) { return showAlertAboutAmountOfAidOnRound() }
-    isAidUsedInThatRound = true;
-    var correctAnswerId = currentQuestion.correctAnswerId;
-    var currentAnswerArray = currentQuestion.answers;
-    currentAnswerArray.forEach(answer => {
-        if (answer.id !== correctAnswerId) {
-            $("#answer" + answer.id + " p:nth-child(2)").empty();
-        }
+    aidAudio();
+    setTimeout(function () {
+        isAidUsedInThatRound = true;
+        var correctAnswerId = currentQuestion.correctAnswerId;
+        var currentAnswerArray = currentQuestion.answers;
+        currentAnswerArray.forEach(answer => {
+            if (answer.id !== correctAnswerId) {
+                $("#answer" + answer.id + " p:nth-child(2)").empty();
+            }
 
-    });
-    $("#getAid img:nth-child(2)").addClass('usedAidStyle');
+        });
+        $("#getAid img:nth-child(2)").addClass('usedAidStyle');
+    }, 4000)
+
 };
+
 function subscribeForFiftyFiftyAid() {
 
     $("#getAid img:nth-child(2)").one('click', onFiftyFiftyPressed)
 }
 function onFriendAidPhonePressed() {
     if (isAidUsedInThatRound) { return showAlertAboutAmountOfAidOnRound() }
-    isAidUsedInThatRound = true;
-    $('#toWin').html('<p>Przyjaciel mówi:</p><p>To z pewnością Daniel Lepszy !</p>');
-    $('#toWin').addClass('phoneStyles');
-    $('#toWin p').addClass('phoheNumberStyles');
-    $("#getAid img:nth-child(3)").addClass('usedAidStyle');
+    aidAudio();
+    setTimeout(function () {
+        isAidUsedInThatRound = true;
+        $('#toWin').html('<p>Przyjaciel mówi:</p><p>To z pewnością Daniel Lepszy !</p>');
+        $('#toWin').addClass('phoneStyles');
+        $('#toWin p').addClass('phoheNumberStyles');
+        $("#getAid img:nth-child(3)").addClass('usedAidStyle');
+    }, 4000)
 }
 function friendAidPhone() {
+
     $("#getAid img:nth-child(3)").one('click', onFriendAidPhonePressed);
+
 };
 function showPublicVoteChart() {
 
@@ -237,41 +253,47 @@ function hideQuestionAndAnswers() {
 
 }
 function animatePublicVoteInChart() {
-    var correctAnswerId = currentQuestion.correctAnswerId;
-    var currentAnswerArray = currentQuestion.answers;
-    currentAnswerArray.forEach(answer => {
-        if (answer.id === correctAnswerId) {
-            $("#proper" + answer.id).addClass('properChart');
-        }
+    
+        var correctAnswerId = currentQuestion.correctAnswerId;
+        var currentAnswerArray = currentQuestion.answers;
+        currentAnswerArray.forEach(answer => {
+            if (answer.id === correctAnswerId) {
+                setTimeout(function () {
+                $("#proper" + answer.id).addClass('properChart');
+            }, 4000)
+            }
 
-    });
-    $("#getAid img:nth-child(1)").addClass('usedAidStyle');
+        });
+        $("#getAid img:nth-child(1)").addClass('usedAidStyle');
+    
 }
 function showQuestionAndAnswers() {
     setTimeout(function () {
-        $('#toWin').hide();
+        $('#toWin').removeClass('publicVotes');
+        $('#toWin .rowsChart').removeClass('publicVoteChart');
+        $('#toWin').empty();
         $('#allAnswers').show();
         $('#mainQuestion').show();
-    }, 5000)
+    }, 9000)
 }
 function showAlertAboutAmountOfAidOnRound() {
-    $('body').append('<div class="alertAboutAmountofAid"> <p>'+
-    'Możesz użyć tylko jednego koła ratunkowego podczas pytania !</p></div>');
+    $('body').append('<div class="alertAboutAmountofAid"> <p>' +
+        'Możesz użyć tylko jednego koła ratunkowego podczas pytania !</p></div>');
     $('.alertAboutAmountofAid').addClass('alertAboutAidInRound');
     $('.alertAboutAmountofAid p').addClass('alertAidContent');
 }
 
 function onPublicVotePressed() {
     if (isAidUsedInThatRound) { return showAlertAboutAmountOfAidOnRound() }
+    aidAudio();
     isAidUsedInThatRound = true;
-    if (isAidUsedInThatRound)
-
-        hideQuestionAndAnswers();
+    hideQuestionAndAnswers();
     showPublicVoteChart();
     animatePublicVoteInChart();
     showQuestionAndAnswers();
+    
 }
 
 function publicVote() {
-    $("#getAid img:nth-child(1)").one('click', onPublicVotePressed)
+    $("#getAid img:nth-child(1)").one('click', onPublicVotePressed);
 }
