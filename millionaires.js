@@ -8,7 +8,6 @@ var clearAnswer = document.getElementById('allAnswers');
 var currentQuestion;
 function loadJSON() {
     var value = $.ajax({
-
         url: 'https://raw.githubusercontent.com/DanielLepszy/Best-Employee/master/questions_and_answers.json',
         async: false // 
     }).responseText;
@@ -173,6 +172,7 @@ function checkAnswer() {
     audioFocus.pause();
     var audio = new Audio('Sounds/GoodAnswers.mp3');
     audio.play();
+
     var correctAnswerId = currentQuestion.correctAnswerId;
     var currentAnswerArray = currentQuestion.answers;
     currentAnswerArray.forEach(answer => {
@@ -196,12 +196,11 @@ function checkAnswer() {
             }, 0);
         }
     })
-
         if (boxOfQuestions.length == 0) {
             setTimeout(function () {
                 audio.pause();
-                var audio = new Audio('Sounds/lastAnswer.mp3');
-                audio.play();
+                var newAudio = new Audio('Sounds/lastAnswer.mp3');
+                newAudio.play();
             }, 5000)
         }
     }
