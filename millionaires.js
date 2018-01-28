@@ -47,6 +47,7 @@ function fetchQuestions() {
 };
 function finishGame() {
     if (boxOfQuestions.length == 0) {
+        setTimeout(function () {
         $('#mainQuestion').remove();
         $('#allAnswers div').remove();
         $('#getAid').remove();
@@ -57,7 +58,7 @@ function finishGame() {
 
         $('#allAnswers').addClass('rewardsDiv');
         $('#allAnswers img').addClass('imageCV');
-
+    }, 5000);
         $("#allAnswers").delegate('img', 'mouseover mouseleave', function (e) {
             if (e.type == 'mouseover') {
                 $(this).css({
@@ -73,7 +74,7 @@ function finishGame() {
                 });
             }
         });
-
+    
     };
 
 }
@@ -129,17 +130,25 @@ function firstMusic() {
 
 function focusMusic(time) {
     setTimeout(function () {
+        if (boxOfQuestions.length != 0){
         audioFocus = new Audio('Sounds/FocusSound.mp3');
         audioFocus.loop = true;
         audioFocus.play();
+    }
+        else {
+            audioFocus = new Audio('Sounds/lastFocus.mp3');
+            audioFocus.loop = true;
+            audioFocus.play();
+        }
     }, time);
 };
 
 
 function checkAnswer() {
+    
     audioFocus.pause();
     var audio = new Audio('Sounds/GoodAnswers.mp3');
-    audio.play()
+    audio.play();
 
     $("#answerA").delay(100).animate({
         'backgroundColor': '#FFCF40',
@@ -155,6 +164,14 @@ function checkAnswer() {
         'backgroundColor': '#000000',
         'color': '#ffffff'
     }, 0);
+    if (boxOfQuestions.length == 0){
+        setTimeout(function () {
+        audio.pause();
+        audio = new Audio('Sounds/lastAnswer.mp3');
+        audio.play();
+        audioFocus.loop = false;
+    }, 5000)
+    }
 }
 
 function clearAnswersFields() {
