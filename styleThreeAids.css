@@ -66,6 +66,15 @@
     padding-top:4%
     
 }
+.publicVoteAnswersPercentage
+{
+    color:#1f1f38;
+    font-size:120%;
+    position:absolute;
+    left:50%;
+    font-weight: bold;
+    width:10%;
+}
 .publicVoteProperAnswer
 {
     border:3px solid #e5e5e5;

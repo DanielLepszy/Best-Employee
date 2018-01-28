@@ -155,10 +155,17 @@ function properAnswerAudio() {
 function winAudio(){
     setTimeout(function () {
         audio.pause();
-        var lastAnswerAudio = new Audio('Sounds/lastAnswer.mp3');
-        lastAnswerAudio.play();
+        var audio = new Audio('Sounds/lastAnswer.mp3');
+       audio.play();
     }, 5000)
 };
+/*function playAudio(url){
+
+    audioFocus.pause();
+    var audio = new Audio(url);
+    audio.play();
+
+}; */
 
 function checkAnswer() {
 
@@ -180,11 +187,11 @@ function checkAnswer() {
         'backgroundColor': '#000000',
         'color': '#ffffff'
     }, 0);
-    if (boxOfQuestions.length === 0) {
+    if (boxOfQuestions.length == 0) {
         setTimeout(function () {
             audio.pause();
-            var lastAnswerAudio = new Audio('Sounds/lastAnswer.mp3');
-            lastAnswerAudio.play();
+            var audio = new Audio('Sounds/lastAnswer.mp3');
+           audio.play();
         }, 5000)
     }
 }
@@ -269,6 +276,8 @@ function animatePublicVoteInChart() {
             if (answer.id === correctAnswerId) {
                 setTimeout(function () {
                 $("#proper" + answer.id).addClass('properChart');
+                $("#proper"+ answer.id).append('<p>100%</p>');
+                $("#proper"+ answer.id+" p").addClass('publicVoteAnswersPercentage');
             }, 4000)
             }
 
