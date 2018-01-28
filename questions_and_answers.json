@@ -1,51 +1,51 @@
 {
     "Questions": [{
-        "QuestionTitle": "Jak się nazywa twoj przyszly pracownik?",
+        "QuestionTitle": "Kto według Ciebie spełnia wszystkie wymagania do obecnego stanowiska pracy?",
         "answers": [{
             "id": "A",
+            "answerTitle": "Donald John Trump"
+        },
+        {
+            "id": "B",
+            "answerTitle": "Bill Gates"
+        },
+        {
+            "id": "C",
             "answerTitle": "Daniel Lepszy"
         },
         {
-            "id": "B",
-            "answerTitle": "Elvis Presley"
-        },
-        {
-            "id": "C",
-            "answerTitle": "Violetta Villas"
-        },
-        {
             "id": "D",
-            "answerTitle": "Mark Zuckerberg"
+            "answerTitle": "Władimir Putin"
         }
         ],
         "correctAnswerId": "A"
     },
     {
-        "QuestionTitle": "Kto jest najlepszy?",
+        "QuestionTitle": "Największy przystojniak tego roku to:",
         "answers": [{
             "id": "A",
-            "answerTitle": "Daniel "
+            "answerTitle": "Brad Pitt "
         },
         {
             "id": "B",
-            "answerTitle": "Elvis "
+            "answerTitle": "Daniel Lepszy "
         },
         {
             "id": "C",
-            "answerTitle": "Violetta "
+            "answerTitle": "Hugh Jackman "
         },
         {
             "id": "D",
-            "answerTitle": "Mark "
+            "answerTitle": "Kit Harington "
         }
         ],
         "correctAnswerId": "A"
     },
     {
-        "QuestionTitle": "Kogo zaprosisz na rozmowe kwalifikacyjna?",
+        "QuestionTitle": "Jak na imię ma osoba, która zaprosisz na na najbliższą rozmowe kwalifikacyjna?",
         "answers": [{
             "id": "A",
-            "answerTitle": "Daniel Lepsz"
+            "answerTitle": "Daniel Lepszy"
         },
         {
             "id": "B",
@@ -53,7 +53,7 @@
         },
         {
             "id": "C",
-            "answerTitle": "Violetta Villa"
+            "answerTitle": "Violetta Ville"
         },
         {
             "id": "D",

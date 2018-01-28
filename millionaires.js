@@ -297,7 +297,7 @@ function showQuestionAndAnswers() {
 }
 function showAlertAboutAmountOfAidOnRound() {
     $('body').append('<div class="alertAboutAmountofAid"> <p>' +
-        'Możesz użyć tylko jednego koła ratunkowego podczas pytania !</p></div>');
+        'Sorry, ale użyłeś już jednego koła ratunkowego w tym pytaniu</p></div>');
     $('.alertAboutAmountofAid').addClass('alertAboutAidInRound');
     $('.alertAboutAmountofAid p').addClass('alertAidContent');
 }
