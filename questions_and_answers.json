@@ -2,7 +2,7 @@
     "Questions": [{
         "QuestionTitle": "Kto według Ciebie spełnia wszystkie wymagania do obecnego stanowiska pracy?",
         "answers": [{
-            "id": "C",
+            "id": "A",
             "answerTitle": "Donald John Trump"
         },
         {
@@ -10,7 +10,7 @@
             "answerTitle": "Bill Gates"
         },
         {
-            "id": "A",
+            "id": "C",
             "answerTitle": "Daniel Lepszy"
         },
         {
@@ -18,16 +18,16 @@
             "answerTitle": "Władimir Putin"
         }
         ],
-        "correctAnswerId": "A"
+        "correctAnswerId": "C"
     },
     {
         "QuestionTitle": "Największy przystojniak tego roku to:",
         "answers": [{
-            "id": "B",
+            "id": "A",
             "answerTitle": "Brad Pitt "
         },
         {
-            "id": "A",
+            "id": "B",
             "answerTitle": "Daniel Lepszy "
         },
         {
@@ -39,13 +39,13 @@
             "answerTitle": "Kit Harington "
         }
         ],
-        "correctAnswerId": "A"
+        "correctAnswerId": "B"
     },
     {
         "QuestionTitle": "Jak na imię ma osoba, która zaprosisz na na najbliższą rozmowe kwalifikacyjna?",
         "answers": [{
             "id": "A",
-            "answerTitle": "Daniel Lepszy"
+            "answerTitle": "Violetta Ville"
         },
         {
             "id": "B",
@@ -53,14 +53,14 @@
         },
         {
             "id": "C",
-            "answerTitle": "Violetta Ville"
+            "answerTitle": "Daniel Lepszy"
         },
         {
             "id": "D",
             "answerTitle": "Mark Zuckerbe"
         }
         ],
-        "correctAnswerId": "A"
+        "correctAnswerId": "C"
     }
     ]
 }

@@ -180,17 +180,17 @@ function checkAnswer() {
 
             $('#toWin').empty();
 
-            $("#answerA").delay(100).animate({
+            $("#answer"+answer.id).delay(100).animate({
                 'backgroundColor': '#FFCF40',
                 'opacity': 1,
                 'color': '000000',
             }, 500);
 
-            $("#answerA").delay(5000).animate({
+            $("#answer"+answer.id).delay(5000).animate({
                 'backgroundColor': '#23E047',
             }, 500);
 
-            $("#answerA").delay(3800).animate({
+            $("#answer"+answer.id).delay(3800).animate({
                 'backgroundColor': '#000000',
                 'color': '#ffffff'
             }, 0);
