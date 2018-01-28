@@ -2,7 +2,7 @@
     "Questions": [{
         "QuestionTitle": "Kto według Ciebie spełnia wszystkie wymagania do obecnego stanowiska pracy?",
         "answers": [{
-            "id": "A",
+            "id": "C",
             "answerTitle": "Donald John Trump"
         },
         {
@@ -10,7 +10,7 @@
             "answerTitle": "Bill Gates"
         },
         {
-            "id": "C",
+            "id": "A",
             "answerTitle": "Daniel Lepszy"
         },
         {
@@ -23,11 +23,11 @@
     {
         "QuestionTitle": "Największy przystojniak tego roku to:",
         "answers": [{
-            "id": "A",
+            "id": "B",
             "answerTitle": "Brad Pitt "
         },
         {
-            "id": "B",
+            "id": "A",
             "answerTitle": "Daniel Lepszy "
         },
         {
