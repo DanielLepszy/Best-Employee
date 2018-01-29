@@ -166,9 +166,12 @@ function winAudio() {
     audio.play();
 
 }; */
-
+//var contents = $("#answerD p:nth-child(2)");
+var blockClickingAnswersManyTimes=false;
 function checkAnswer() {
-
+//if (blockClickingAnswersManyTimes){return};
+//blockClickingAnswersManyTimes=true;
+if ($("#answerD p:nth-child(2)").text().length > 0) {   
     audioFocus.pause();
     var audio = new Audio('Sounds/GoodAnswers.mp3');
     audio.play();
@@ -179,7 +182,7 @@ function checkAnswer() {
         if (answer.id === correctAnswerId) {
 
             $('#toWin').empty();
-
+           // if ($("#answer"+answer.id).css('background-color') === '#000000'|| ) { 
             $("#answer"+answer.id).delay(100).animate({
                 'backgroundColor': '#FFCF40',
                 'opacity': 1,
@@ -195,6 +198,7 @@ function checkAnswer() {
                 'color': '#ffffff'
             }, 0);
         }
+    
     })
         if (boxOfQuestions.length == 0) {
             setTimeout(function () {
@@ -204,6 +208,8 @@ function checkAnswer() {
             }, 5000)
         }
     }
+}
+
 
 function clearAnswersFields() {
             isAidUsedInThatRound = false;
