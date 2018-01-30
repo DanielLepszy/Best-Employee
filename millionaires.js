@@ -19,14 +19,12 @@ beginGame.addEventListener("click", function () {
     onStartGame()
 });
 
-function subscribeOnClick() {
-    $('#allAnswers').click(function () {
-        onCorrectAnswerSelected()
-    })
+function subscribeOnCorectAnswerSelected() {
+    $('#allAnswers').one('click', onCorrectAnswerSelected);
 }
 
 function onStartGame() {
-    subscribeOnClick()
+    subscribeOnCorectAnswerSelected()
     fetchQuestions()
     currentQuestion = boxOfQuestions.pop()
     subscribeForLifelines()
@@ -106,7 +104,7 @@ function showCurrentAnswers(question, time) {
 
 function onCorrectAnswerSelected() {
     checkAnswer()
-    focusMusic(14000)
+    focusMusic()
     clearAnswersFields()
     finishGame()
 
@@ -121,9 +119,9 @@ function onCorrectAnswerSelected() {
 
 function focusMusic() {
     if (boxOfQuestions.length != 0) {
-        playAudio('Sounds/FocusSound.mp3', true)
+        playAudio('Sounds/FocusSound.mp3')
     } else {
-        playAudio('Sounds/lastFocus.mp3', true)
+        playAudio('Sounds/lastFocus.mp3')
     }
 };
 
@@ -148,15 +146,12 @@ var blockClickingAnswersManyTimes = false;
 
 function checkAnswer() {
     if ($("#answerD p:nth-child(2)").text().length > 0) {
-        selectAnswer()
 
 
-        playAudio('Sounds/zgroza.mp3', function () {
-            playAudio('Sounds/dobraodpowiedz.mp3', function () {
-                playAudio('Sounds/nowepytanie.mp3')
-            })
-        })
-
+       // playAudio('Sounds/zgroza.mp3', function () {
+        //    playAudio('Sounds/dobraodpowiedz.mp3', function () {
+//          playAudio('Sounds/nowepytanie.mp3')
+          
         checkSelectedAnswer()
 
         if (boxOfQuestions.length == 0) {
@@ -170,14 +165,11 @@ function checkAnswer() {
     }
 }
 
-function selectAnswer() {
-    var correctAnswerId = currentQuestion.correctAnswerId;
-    var currentAnswerArray = currentQuestion.answers;
-}
 
-function checkSelectedAnswer() {
+function checkingAnswer(){
     var correctAnswerId = currentQuestion.correctAnswerId;
     var currentAnswerArray = currentQuestion.answers;
+    playAudio('Sounds/zgroza.mp3')    
     currentAnswerArray.forEach(answer => {
         if (answer.id === correctAnswerId) {
             $('#toWin').empty();
@@ -186,19 +178,34 @@ function checkSelectedAnswer() {
                 'opacity': 1,
                 'color': '000000',
             }, 500);
-
-            $("#answer" + answer.id).delay(5000).animate({
-                'backgroundColor': '#23E047',
-            }, 500);
-
-            $("#answer" + answer.id).delay(3800).animate({
-                'backgroundColor': '#000000',
-                'color': '#ffffff'
-            }, 0);
         }
     })
-}
+}  
+function checkSelectedAnswer() {
+    var correctAnswerId = currentQuestion.correctAnswerId;
+    var currentAnswerArray = currentQuestion.answers;
+    checkingAnswer()
+//    currentAnswerArray.forEach(answer => {
+//         if (answer.id === correctAnswerId) {
+//             $('#toWin').empty();
+//             $("#answer" + answer.id).delay(100).animate({
+//                 'backgroundColor': '#FFCF40',
+//                 'opacity': 1,
+//                 'color': '000000',
+//             }, 500);
 
+//             $("#answer" + answer.id).delay(5000).animate({
+//                 'backgroundColor': '#23E047',
+//             }, 500);
+
+//             $("#answer" + answer.id).delay(3800).animate({
+//                 'backgroundColor': '#000000',
+//                 'color': '#ffffff'
+//             }, 0);
+//         }
+//     })
+// 
+}
 
 function clearAnswersFields() {
     isAidUsedInThatRound = false;
