@@ -34,11 +34,13 @@ function onStartGame() {
         showCurrentAnswers(currentQuestion, 0)
     });
 };
+
 function subscribeForLifelines() {
     subscribeForFiftyFiftyLifeline()
     subscribeForPhoneAFriendLifeline()
     subscribeAskAAudienceLifeline()
 }
+
 function fetchQuestions() {
     boxOfQuestions = allQuestions.Questions
 };
@@ -98,36 +100,41 @@ function showCurrentAnswers(question, time) {
         setTimeout(function () {
             $('#answerD .firstRowAnswer').after('<p>' + questionAnswers[3].answerTitle + '</p>')
         }, 8000);
+        countsBlock=0;
     }, time);
+    
 }
 
-
+var countsBlock=0;
 function onCorrectAnswerSelected() {
-    checkAnswer()
-    focusMusic()
-    clearAnswersFields()
-    finishGame()
-
-    if (boxOfQuestions.length != 0) {
-        currentQuestion = boxOfQuestions.pop()
-        showCurrentAnswers(currentQuestion, 14000)
+    if (isAllAnswersLoaded()) {
+        if(countsBlock===0){
+        checkAnswer() 
+        //focusMusic()
+        clearAnswersFields()
+        finishGame()
+        if (boxOfQuestions.length != 0) {
+            currentQuestion = boxOfQuestions.pop()
+            showCurrentAnswers(currentQuestion, 14000)
+        }
+        subscribeForLifelines()
+        subscribeOnCorectAnswerSelected()
     }
-
-    subscribeForLifelines()
-
+}
 }
 
 function focusMusic() {
     if (boxOfQuestions.length != 0) {
-        playAudio('Sounds/FocusSound.mp3')
+        //playAudio('Sounds/FocusSound.mp3')
+        playQuestionFocusMusic();
     } else {
-        playAudio('Sounds/lastFocus.mp3')
+        // playAudio('Sounds/lastFocus.mp3')
     }
 };
 
 function aidAudio() {
     playAudio('Sounds/Aid.mp3')
-    setTimeout(function () { }, 6000)
+    setTimeout(function () {}, 6000)
 };
 
 function properAnswerAudio() {
@@ -138,74 +145,53 @@ function properAnswerAudio() {
 function winAudio() {
     // pause focus
     setTimeout(function () {
-        playAudio('Sounds/lastAnswer.mp3')
+        playAudio('Sounds/lastanswer.mp3')
     }, 5000)
 };
 
 var blockClickingAnswersManyTimes = false;
 
+function isAllAnswersLoaded() {
+    return $("#answerD p:nth-child(2)").text().length > 0
+}
+
 function checkAnswer() {
-    if ($("#answerD p:nth-child(2)").text().length > 0) {
-
-
-       // playAudio('Sounds/zgroza.mp3', function () {
-        //    playAudio('Sounds/dobraodpowiedz.mp3', function () {
-//          playAudio('Sounds/nowepytanie.mp3')
-          
-        checkSelectedAnswer()
-
-        if (boxOfQuestions.length == 0) {
-            winAudio()
-            setTimeout(function () {
-                audio.pause();
-                var newAudio = new Audio('Sounds/lastAnswer.mp3');
-                newAudio.play();
-            }, 5000)
-        }
+    checkingAnswer()
+    if (boxOfQuestions.length == 0) {
+        winAudio()
+        setTimeout(function () {
+            playAudio('Sounds/lastanswer.mp3')
+        }, 5000)
     }
 }
 
-
-function checkingAnswer(){
+function checkingAnswer() {
+    countsBlock++   
     var correctAnswerId = currentQuestion.correctAnswerId;
     var currentAnswerArray = currentQuestion.answers;
-    playAudio('Sounds/zgroza.mp3')    
-    currentAnswerArray.forEach(answer => {
-        if (answer.id === correctAnswerId) {
-            $('#toWin').empty();
-            $("#answer" + answer.id).delay(100).animate({
-                'backgroundColor': '#FFCF40',
-                'opacity': 1,
-                'color': '000000',
-            }, 500);
-        }
-    })
-}  
-function checkSelectedAnswer() {
-    var correctAnswerId = currentQuestion.correctAnswerId;
-    var currentAnswerArray = currentQuestion.answers;
-    checkingAnswer()
-//    currentAnswerArray.forEach(answer => {
-//         if (answer.id === correctAnswerId) {
-//             $('#toWin').empty();
-//             $("#answer" + answer.id).delay(100).animate({
-//                 'backgroundColor': '#FFCF40',
-//                 'opacity': 1,
-//                 'color': '000000',
-//             }, 500);
-
-//             $("#answer" + answer.id).delay(5000).animate({
-//                 'backgroundColor': '#23E047',
-//             }, 500);
-
-//             $("#answer" + answer.id).delay(3800).animate({
-//                 'backgroundColor': '#000000',
-//                 'color': '#ffffff'
-//             }, 0);
-//         }
-//     })
-// 
-}
+    var answer = currentAnswerArray.find(element => element.id === correctAnswerId)
+    $('#toWin').empty();
+    $("#answer" + answer.id).delay(100).animate({
+        'backgroundColor': '#FFCF40',
+        'opacity': 1,
+        'color': '000000',
+    }, 400);
+    descreaseVolumeQuestionFocusMusic();
+    playAudio('Sounds/zgroza.mp3', function () {
+        $("#answer" + answer.id).animate({
+            'backgroundColor': '#23E047',
+        }, 300);
+        playAudio('Sounds/dobraodpowiedz.mp3', function () {
+            playAudio('Sounds/nowepytanie.mp3')
+            $("#answer" + answer.id).animate({
+                'backgroundColor': '#000000',
+                'color': '#ffffff'
+            }, 0); 
+            
+        })
+      
+    });
+};
 
 function clearAnswersFields() {
     isAidUsedInThatRound = false;
