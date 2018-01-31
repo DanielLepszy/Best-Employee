@@ -16,7 +16,8 @@ function loadJSON() {
 
 beginGame.addEventListener("click", function () {
     allQuestions = loadJSON()
-    onStartGame()
+//    onStartGame()
+finishGame();
 });
 
 function subscribeOnCorectAnswerSelected() {
@@ -24,14 +25,13 @@ function subscribeOnCorectAnswerSelected() {
 }
 
 function onStartGame() {
-    subscribeOnCorectAnswerSelected()
     fetchQuestions()
     currentQuestion = boxOfQuestions.pop()
-    subscribeForLifelines()
+   
 
     playAudio('Sounds/Begin.mp3', function () {
-        focusMusic()
-        showCurrentAnswers(currentQuestion, 0)
+        playQuestionFocusMusic();
+        showCurrentAnswers(currentQuestion)
     });
 };
 
@@ -44,22 +44,20 @@ function subscribeForLifelines() {
 function fetchQuestions() {
     boxOfQuestions = allQuestions.Questions
 };
+function openCV(){
+    window.open('https://drive.google.com/file/d/13FiIIXAjtI2i9dgjf6l3sGN1aQgfWrrL/view?usp=sharing');
+}
 
 function finishGame() {
     if (boxOfQuestions.length == 0) {
-        setTimeout(function () {
-            $('#mainQuestion').remove();
-            $('#allAnswers div').remove();
-            $('#getAid').remove();
-            $('#toWin').remove();
-
-            $('#allAnswers').html('<a><img id="myCV" src="Images/pobrane.png"></a>');
-
-            $('#allAnswers').addClass('rewardsDiv');
-
-            $('#allAnswers img').addClass('imageCV');
-
-        }, 6000);
+        $('#mainQuestion').remove();
+        $('#allAnswers div').remove();
+        $('#getAid').remove();
+        $('#toWin').remove();
+        $('#allAnswers').html('<a><img id="myCV" src="Images/pobrane.png"></a>');
+        $('#allAnswers').addClass('rewardsDiv');
+        $('#allAnswers img').addClass('imageCV');
+        $("#allAnswers").click(openCV);
         $("#allAnswers").delegate('img', 'mouseover mouseleave', function (e) {
             if (e.type == 'mouseover') {
                 $(this).css({
@@ -75,98 +73,48 @@ function finishGame() {
                 });
             }
         });
-
+        
     };
-
 }
 
-function showCurrentAnswers(question, time) {
-
-
+function showCurrentAnswers(question) {
     var questionAnswers = question.answers
     var questionContent = question.QuestionTitle
-
+    $('#mainQuestion').html('<p>' + questionContent + '</p>');
     setTimeout(function () {
-        $('#mainQuestion').html('<p>' + questionContent + '</p>');
-        setTimeout(function () {
-            $('#answerA .firstRowAnswer').after('<p>' + questionAnswers[0].answerTitle + '</p>')
-        }, 2000);
-        setTimeout(function () {
-            $('#answerB .firstRowAnswer').after('<p>' + questionAnswers[1].answerTitle + '</p>')
-        }, 4000);
-        setTimeout(function () {
-            $('#answerC .firstRowAnswer').after('<p>' + questionAnswers[2].answerTitle + '</p>')
-        }, 6000);
-        setTimeout(function () {
-            $('#answerD .firstRowAnswer').after('<p>' + questionAnswers[3].answerTitle + '</p>')
-        }, 8000);
-        countsBlock=0;
-    }, time);
-    
-}
-
-var countsBlock=0;
-function onCorrectAnswerSelected() {
-    if (isAllAnswersLoaded()) {
-        if(countsBlock===0){
-        checkAnswer() 
-        //focusMusic()
-        clearAnswersFields()
-        finishGame()
-        if (boxOfQuestions.length != 0) {
-            currentQuestion = boxOfQuestions.pop()
-            showCurrentAnswers(currentQuestion, 14000)
-        }
-        subscribeForLifelines()
+        $('#answerA .firstRowAnswer').after('<p>' + questionAnswers[0].answerTitle + '</p>')
+    }, 2000);
+    setTimeout(function () {
+        $('#answerB .firstRowAnswer').after('<p>' + questionAnswers[1].answerTitle + '</p>')
+    }, 4000);
+    setTimeout(function () {
+        $('#answerC .firstRowAnswer').after('<p>' + questionAnswers[2].answerTitle + '</p>')
+    }, 6000);
+    setTimeout(function () {
+        $('#answerD .firstRowAnswer').after('<p>' + questionAnswers[3].answerTitle + '</p>')
         subscribeOnCorectAnswerSelected()
-    }
-}
+        subscribeForLifelines()
+    }, 8000);
 }
 
-function focusMusic() {
-    if (boxOfQuestions.length != 0) {
-        //playAudio('Sounds/FocusSound.mp3')
-        playQuestionFocusMusic();
-    } else {
-        // playAudio('Sounds/lastFocus.mp3')
-    }
-};
+function onCorrectAnswerSelected() {
 
+    animateCorrectAnswerSelection(function () {
+        if (boxOfQuestions.length > 0) {
+            currentQuestion = boxOfQuestions.pop();
+            if (boxOfQuestions == 0) {
+                playLastQuestionFocusMusic()
+            }
+            increaseVolumeQuestionFocusMusic();
+            showCurrentAnswers(currentQuestion);
+        }
+    })
+}
 function aidAudio() {
     playAudio('Sounds/Aid.mp3')
-    setTimeout(function () {}, 6000)
 };
 
-function properAnswerAudio() {
-    // pause focus
-    playAudio('Sounds/GoodAnswers.mp3')
-};
-
-function winAudio() {
-    // pause focus
-    setTimeout(function () {
-        playAudio('Sounds/lastanswer.mp3')
-    }, 5000)
-};
-
-var blockClickingAnswersManyTimes = false;
-
-function isAllAnswersLoaded() {
-    return $("#answerD p:nth-child(2)").text().length > 0
-}
-
-function checkAnswer() {
-    checkingAnswer()
-    if (boxOfQuestions.length == 0) {
-        winAudio()
-        setTimeout(function () {
-            playAudio('Sounds/lastanswer.mp3')
-        }, 5000)
-    }
-}
-
-function checkingAnswer() {
-    countsBlock++   
+function animateCorrectAnswerSelection(onAnimationCompleted) { // Parametr przekazywany dalej
     var correctAnswerId = currentQuestion.correctAnswerId;
     var currentAnswerArray = currentQuestion.answers;
     var answer = currentAnswerArray.find(element => element.id === correctAnswerId)
@@ -182,27 +130,35 @@ function checkingAnswer() {
             'backgroundColor': '#23E047',
         }, 300);
         playAudio('Sounds/dobraodpowiedz.mp3', function () {
-            playAudio('Sounds/nowepytanie.mp3')
-            $("#answer" + answer.id).animate({
-                'backgroundColor': '#000000',
-                'color': '#ffffff'
-            }, 0); 
-            
+            afterCorectAnswerSelectedAnimation(answer, onAnimationCompleted);
         })
-      
     });
+};
+
+function afterCorectAnswerSelectedAnimation(answer, onAnimationCompleted) {
+    $("#answer" + answer.id).animate({
+        'backgroundColor': '#000000',
+        'color': '#ffffff'
+    }, 0);
+    clearAnswersFields();
+    if (boxOfQuestions.length === 0) {
+        playAudio('Sounds/lastanswer.mp3')
+        finishGame()
+    } else {
+        playAudio('Sounds/nowepytanie.mp3', function () {
+            onAnimationCompleted();
+        });
+    }
 };
 
 function clearAnswersFields() {
     isAidUsedInThatRound = false;
     $('.alertAboutAmountofAid').remove();
-    setTimeout(function () {
-        $('#mainQuestion p').empty();
-        $('#answerA p:nth-child(2)').remove();
-        $('#answerB p:nth-child(2)').remove();
-        $('#answerC p:nth-child(2)').remove();
-        $('#answerD p:nth-child(2)').remove();
-    }, 10000);
+    $('#mainQuestion p').empty();
+    $('#answerA p:nth-child(2)').remove();
+    $('#answerB p:nth-child(2)').remove();
+    $('#answerC p:nth-child(2)').remove();
+    $('#answerD p:nth-child(2)').remove();
 }
 
 function onFiftyFiftyPressed() {
