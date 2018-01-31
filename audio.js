@@ -16,7 +16,7 @@ function descreaseVolumeQuestionFocusMusic() {
 }
 
 function increaseVolumeQuestionFocusMusic() {
-    focusMusicPlayer.volume = 0.4;
+    focusMusicPlayer.volume = 1;
 }
 
 function playAudio(url, didEndCallback) {

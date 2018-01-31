@@ -15,7 +15,7 @@ function gameInformation() {
 
     $('#startGame').html('Prosta aplikacja webowa bazująca na słynnej grze "Milionerzy".<br> ' +
         'Zasady gry są proste: grasz dopóki nie wygrasz :).<br>Można korzystać tylko z jednego koła ratunkowego podczas danego pytania.<br>' +
-        'Pamiętaj, że pytania z pozoru wydają się łatwe.<br><br> Powodzenia !');
+        'Pamiętaj, że pytania z pozoru wydają się łatwe.<br><br> Powodzenia ! <br><br>"Nie jestem autorem użytych plików .png oraz .mp3 w projekcie"');
 
     $('#startGame').addClass('gameInformationsStyles');
 }
@@ -44,7 +44,6 @@ function startGame() {
         '<img id="friendcAid" src="Images/telefondoprzyjaciela.png">'
     );
 
-
     $('#mainQuestion').html('<p></p>');
 
     $('#answerA').html('<p class="firstRowAnswer">A:</p>');
@@ -59,7 +58,6 @@ function startGame() {
     $('#getAid img').css({
         'padding': '12px',
     });
-
     $("#getAid").delegate('img', 'mouseover mouseleave', function (e) {
         if (e.type == 'mouseover') {
             $(this).css({
@@ -74,7 +72,6 @@ function startGame() {
             });
         }
     });
-
     $('#mainQuestion').addClass('positionOfMainQuestion');
 
     $('#mainQuestion p').addClass('positionOfContentQuestion');

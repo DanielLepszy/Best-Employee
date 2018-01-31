@@ -13,39 +13,32 @@ function loadJSON() {
     }).responseText;
     return JSON.parse(value);
 }
-
 beginGame.addEventListener("click", function () {
     allQuestions = loadJSON()
-//    onStartGame()
-finishGame();
-});
+    onStartGame()
 
+});
 function subscribeOnCorectAnswerSelected() {
     $('#allAnswers').one('click', onCorrectAnswerSelected);
 }
-
 function onStartGame() {
     fetchQuestions()
     currentQuestion = boxOfQuestions.pop()
-   
-
     playAudio('Sounds/Begin.mp3', function () {
         playQuestionFocusMusic();
         showCurrentAnswers(currentQuestion)
     });
 };
-
 function subscribeForLifelines() {
     subscribeForFiftyFiftyLifeline()
     subscribeForPhoneAFriendLifeline()
     subscribeAskAAudienceLifeline()
 }
-
 function fetchQuestions() {
     boxOfQuestions = allQuestions.Questions
 };
-function openCV(){
-    window.open('https://drive.google.com/file/d/13FiIIXAjtI2i9dgjf6l3sGN1aQgfWrrL/view?usp=sharing');
+function openCV() {
+    window.open('https://drive.google.com/file/d/1dLn9U6Xq-_HsvsphC_xVNGfZtIYxro7a/view?usp=sharing');
 }
 
 function finishGame() {
@@ -65,7 +58,6 @@ function finishGame() {
                     'transform': 'scale(1.2)',
                     'transition': 'all 0.5s ease-in-out',
                 });
-
             } else {
                 $(this).css({
                     'transform': 'scale(1.1)',
@@ -73,10 +65,8 @@ function finishGame() {
                 });
             }
         });
-        
     };
 }
-
 function showCurrentAnswers(question) {
     var questionAnswers = question.answers
     var questionContent = question.QuestionTitle
@@ -96,9 +86,7 @@ function showCurrentAnswers(question) {
         subscribeForLifelines()
     }, 8000);
 }
-
 function onCorrectAnswerSelected() {
-
     animateCorrectAnswerSelection(function () {
         if (boxOfQuestions.length > 0) {
             currentQuestion = boxOfQuestions.pop();
@@ -111,9 +99,11 @@ function onCorrectAnswerSelected() {
     })
 }
 function aidAudio() {
-    playAudio('Sounds/Aid.mp3')
+    descreaseVolumeQuestionFocusMusic();
+    playAudio('Sounds/Aid.mp3', function () {
+        increaseVolumeQuestionFocusMusic();
+    })
 };
-
 function animateCorrectAnswerSelection(onAnimationCompleted) { // Parametr przekazywany dalej
     var correctAnswerId = currentQuestion.correctAnswerId;
     var currentAnswerArray = currentQuestion.answers;
@@ -134,7 +124,6 @@ function animateCorrectAnswerSelection(onAnimationCompleted) { // Parametr przek
         })
     });
 };
-
 function afterCorectAnswerSelectedAnimation(answer, onAnimationCompleted) {
     $("#answer" + answer.id).animate({
         'backgroundColor': '#000000',
@@ -150,7 +139,6 @@ function afterCorectAnswerSelectedAnimation(answer, onAnimationCompleted) {
         });
     }
 };
-
 function clearAnswersFields() {
     isAidUsedInThatRound = false;
     $('.alertAboutAmountofAid').remove();
@@ -160,7 +148,6 @@ function clearAnswersFields() {
     $('#answerC p:nth-child(2)').remove();
     $('#answerD p:nth-child(2)').remove();
 }
-
 function onFiftyFiftyPressed() {
     if (isAidUsedInThatRound) {
         return showAlertAboutAmountOfAidOnRound()
@@ -174,17 +161,13 @@ function onFiftyFiftyPressed() {
             if (answer.id !== correctAnswerId) {
                 $("#answer" + answer.id + " p:nth-child(2)").empty();
             }
-
         });
         $("#getAid img:nth-child(2)").addClass('usedAidStyle');
     }, 4000)
-
 };
-
 function subscribeForFiftyFiftyLifeline() {
     $("#getAid img:nth-child(2)").one('click', onFiftyFiftyPressed)
 }
-
 function onFriendAidPhonePressed() {
     if (isAidUsedInThatRound) {
         return showAlertAboutAmountOfAidOnRound()
@@ -198,13 +181,10 @@ function onFriendAidPhonePressed() {
         $("#getAid img:nth-child(3)").addClass('usedAidStyle');
     }, 4000)
 }
-
 function subscribeForPhoneAFriendLifeline() {
     $("#getAid img:nth-child(3)").one('click', onFriendAidPhonePressed);
 };
-
 function showPublicVoteChart() {
-
     $('#toWin').html('<div class="rowsChart">' +
         '<p>A:</p><div class="percentageOfVoters" id="properA"></div></div>' +
         '<div class="rowsChart">' +
@@ -225,11 +205,8 @@ function showPublicVoteChart() {
 function hideQuestionAndAnswers() {
     $('#allAnswers').hide();
     $('#mainQuestion').hide();
-
 }
-
 function animatePublicVoteInChart() {
-
     var correctAnswerId = currentQuestion.correctAnswerId;
     var currentAnswerArray = currentQuestion.answers;
     currentAnswerArray.forEach(answer => {
@@ -240,12 +217,9 @@ function animatePublicVoteInChart() {
                 $("#proper" + answer.id + " p").addClass('publicVoteAnswersPercentage');
             }, 4000)
         }
-
     });
     $("#getAid img:nth-child(1)").addClass('usedAidStyle');
-
 }
-
 function showQuestionAndAnswers() {
     setTimeout(function () {
 
@@ -256,14 +230,12 @@ function showQuestionAndAnswers() {
         $('#mainQuestion').show();
     }, 9000)
 }
-
 function showAlertAboutAmountOfAidOnRound() {
     $('body').append('<div class="alertAboutAmountofAid"> <p>' +
         'Sorry, ale użyłeś już jednego koła ratunkowego w tym pytaniu</p></div>');
     $('.alertAboutAmountofAid').addClass('alertAboutAidInRound');
     $('.alertAboutAmountofAid p').addClass('alertAidContent');
 }
-
 function onPublicVotePressed() {
     if (isAidUsedInThatRound) {
         return showAlertAboutAmountOfAidOnRound()
@@ -274,9 +246,7 @@ function onPublicVotePressed() {
     showPublicVoteChart();
     animatePublicVoteInChart();
     showQuestionAndAnswers();
-
 }
-
 function subscribeAskAAudienceLifeline() {
     $("#getAid img:nth-child(1)").one('click', onPublicVotePressed);
 }

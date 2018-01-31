@@ -1,6 +1,6 @@
 {
     "Questions": [{
-        "QuestionTitle": "Kto według Ciebie spełnia wszystkie wymagania do obecnego stanowiska pracy?",
+        "QuestionTitle": "Jak ma na imię osoba, którą Pan/Pani zaprosi na najbliższą rozmowę kwalifikacyjną?",
         "answers": [{
             "id": "A",
             "answerTitle": "Donald John Trump"
@@ -21,7 +21,7 @@
         "correctAnswerId": "C"
     },
     {
-        "QuestionTitle": "Największy przystojniak tego roku to:",
+        "QuestionTitle": "Kto spowodował podjęcię natychmiastowej decyzji o rekrutacji dodatkowej osoby?",
         "answers": [{
             "id": "A",
             "answerTitle": "Brad Pitt "
@@ -36,20 +36,20 @@
         },
         {
             "id": "D",
-            "answerTitle": "Kit Harington "
+            "answerTitle": "Megan Fox "
         }
         ],
         "correctAnswerId": "B"
     },
     {
-        "QuestionTitle": "Jak na imię ma osoba, która zaprosisz na na najbliższą rozmowe kwalifikacyjna?",
+        "QuestionTitle": "Kto według Pana/Pani jest idealnym kandydatem do obecnego stanowiska pracy?",
         "answers": [{
             "id": "A",
-            "answerTitle": "Violetta Ville"
+            "answerTitle": "Violetta Villas"
         },
         {
             "id": "B",
-            "answerTitle": "Elvis Presly"
+            "answerTitle": "Elvis Presley"
         },
         {
             "id": "C",
@@ -57,7 +57,7 @@
         },
         {
             "id": "D",
-            "answerTitle": "Mark Zuckerbe"
+            "answerTitle": "Mark Zuckerberg"
         }
         ],
         "correctAnswerId": "C"
