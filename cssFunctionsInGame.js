@@ -15,7 +15,9 @@ function gameInformation() {
 
     $('#startGame').html('Prosta aplikacja webowa bazująca na słynnej grze "Milionerzy".<br> ' +
         'Zasady gry są proste: grasz dopóki nie wygrasz :).<br>Można korzystać tylko z jednego koła ratunkowego podczas danego pytania.<br>' +
-        'Pamiętaj, że pytania z pozoru wydają się łatwe.<br><br> Powodzenia ! <br><br>"Nie jestem autorem użytych plików .png oraz .mp3 w projekcie"');
+        'Pamiętaj, że pytania z pozoru wydają się łatwe.<br><br> Powodzenia ! <br><br>Prawa autorskie:<br>'+ 
+        '- Pliki MP3 (http://www.kakofonia.pl/PLtele.php)<br>'+
+        '- Pliki PNG (s)');
 
     $('#startGame').addClass('gameInformationsStyles');
 }

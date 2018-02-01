@@ -20,9 +20,17 @@ beginGame.addEventListener("click", function () {
 });
 function subscribeOnCorectAnswerSelected() {
     $('#allAnswers').one('click', onCorrectAnswerSelected);
-    unblockUseLifLinesDuringAnswers()
+        setTimeout(function () {
+            $("#getAid img").removeClass('blockUsingAid')
+        }, 25000);
 }
 
+// function unblockUseLifLinesDuringAnswers() {
+//     setTimeout(function () {
+//         $("#getAid img").removeClass('usedAidStyle');
+//         $("#getAid img").addClass('notUsedAidStyle');
+//     }, 24000);
+// }
 function onStartGame() {
     fetchQuestions()
     currentQuestion = boxOfQuestions.pop()
@@ -151,9 +159,7 @@ function clearAnswersFields() {
     $('#answerC p:nth-child(2)').remove();
     $('#answerD p:nth-child(2)').remove();
 }
-function unblockUseLifLinesDuringAnswers(){
-    setTimeout(function(){$("#getAid img").addClass('notUsedAidStyle'); },24000);
-}
+
 function onFiftyFiftyPressed() {
     if (isAidUsedInThatRound) {
         return showAlertAboutAmountOfAidOnRound()
