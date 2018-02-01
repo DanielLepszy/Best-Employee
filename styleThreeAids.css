@@ -102,3 +102,16 @@ opacity:0.45;
 cursor: default;
 pointer-events: none;
 }
+.notUsedAidStyle
+{
+opacity:1;
+cursor: hand;
+pointer-events: auto;
+}
+.blockUsingAid
+{
+opacity:0.45;
+cursor: default;
+pointer-events: none;  
+}
+

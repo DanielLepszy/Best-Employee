@@ -20,7 +20,9 @@ beginGame.addEventListener("click", function () {
 });
 function subscribeOnCorectAnswerSelected() {
     $('#allAnswers').one('click', onCorrectAnswerSelected);
+    unblockUseLifLinesDuringAnswers()
 }
+
 function onStartGame() {
     fetchQuestions()
     currentQuestion = boxOfQuestions.pop()
@@ -87,6 +89,7 @@ function showCurrentAnswers(question) {
     }, 8000);
 }
 function onCorrectAnswerSelected() {
+    $("#getAid img").addClass('blockUsingAid');
     animateCorrectAnswerSelection(function () {
         if (boxOfQuestions.length > 0) {
             currentQuestion = boxOfQuestions.pop();
@@ -131,7 +134,7 @@ function afterCorectAnswerSelectedAnimation(answer, onAnimationCompleted) {
     }, 0);
     clearAnswersFields();
     if (boxOfQuestions.length === 0) {
-        playAudio('Sounds/lastanswer.mp3')
+        playAudio('Sounds/lastAnswer.mp3')
         finishGame()
     } else {
         playAudio('Sounds/nowepytanie.mp3', function () {
@@ -147,6 +150,9 @@ function clearAnswersFields() {
     $('#answerB p:nth-child(2)').remove();
     $('#answerC p:nth-child(2)').remove();
     $('#answerD p:nth-child(2)').remove();
+}
+function unblockUseLifLinesDuringAnswers(){
+    setTimeout(function(){$("#getAid img").addClass('notUsedAidStyle'); },24000);
 }
 function onFiftyFiftyPressed() {
     if (isAidUsedInThatRound) {

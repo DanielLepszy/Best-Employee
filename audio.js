@@ -6,7 +6,7 @@ function playQuestionFocusMusic() {
 };
 
 function playLastQuestionFocusMusic(){
-    focusMusicPlayer = new Audio('Sounds/lastfocus.mp3')
+    focusMusicPlayer = new Audio('Sounds/lastFocus.mp3')
     focusMusicPlayer.loop = true
     focusMusicPlayer.play()
 }
