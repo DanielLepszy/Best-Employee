@@ -30,7 +30,9 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    margin: 0px
+    margin: 0px;
+    text-align: center;
+    padding:3px;
 }
 .positionOfContentQuestion
 {
@@ -99,5 +101,60 @@ text-align: center;
 font-weight: bold;
 background-color:black;
 font-size:23px;
+}
+@media screen and (min-width:128px) and (max-width: 360px) {  
+    .positionOfMainQuestion
+    {
+        font-size: 20px;
+        color:red;
+        padding:5px;
+        text-align: right;
+    }
+    .positionOfAnswers
+    {
+        padding: 5px;
+        font-size: 20px;
+        color:red;
+        text-align: left;
+    }
+    .styleOfFirstContentAnswers
+    {
+        font-size: 20px;
+    }
+    .styleOfSecondContentAnswers
+    {
+        font-size: 20px;
+    }
+}
+@media screen and (min-width:361px) and (max-width: 768px) {  
+    .positionOfMainQuestion
+    {
+        font-size: 20px;
+        padding:3px;
+        text-align: center;
+    }
+    .positionOfAnswers
+    {
+        padding: 5px;
+        font-size: 20px;
+        text-align: center;
+    }
+    .styleOfFirstContentAnswers
+    {
+        font-size: 20px;
+    }
+    .styleOfSecondContentAnswers
+    {
+        font-size: 20px;
+    }
+    .positionsOfThreeAids
+    {
+        transform:scale(0.8,0.8);    
+        /* width: 480px;
+        height: 100px; */
+        right:10px;
+        left: auto;
+     
+    }
 }
 
