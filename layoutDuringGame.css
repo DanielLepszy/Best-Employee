@@ -1,6 +1,6 @@
 .imageBackground
 {
-    background:url(Images/background2.png);
+    background:url(Images/CodeBackground.png);
     background-size: cover;
 }
 .positionsOfThreeAids
@@ -102,28 +102,7 @@ font-weight: bold;
 background-color:black;
 font-size:23px;
 }
-/* @media screen and (max-width: 127px) {  
-    .positionOfMainQuestion
-    {
-        font-size: 15px;
-        padding:5px;
-        text-align: center;
-    }
-    .positionOfAnswers
-    {
-        padding: 5px;
-        font-size: 10px;
-    }
-    .styleOfFirstContentAnswers
-    {
-        font-size: 10px;
-        color: red;
-    }
-    .styleOfSecondContentAnswers
-    {
-        font-size: 10px;
-    }
-} */
+
 @media screen and (min-width:128px) and (max-width: 360px) {
     body
     {
@@ -131,10 +110,6 @@ font-size:23px;
     }
     .positionsOfThreeAids
     {   
-        /* transform:scale(0.7,0.7);    
-        /* width: 480px;
-        height: 100px; 
-        right:-15%; */
         position:absolute;
         transform:translate(25%,0%) scale(0.7,0.7);
     }  
@@ -158,7 +133,6 @@ font-size:23px;
     {
         font-size: 20px;
     }
-    
 }
 @media screen and (min-width:361px) and (max-width: 415px) {
     body
@@ -201,8 +175,6 @@ font-size:23px;
         width:10%;
     }
 }
-
-
 @media screen and (min-width:416px) and (max-width: 768px) {  
     .positionOfMainQuestion
     {
@@ -227,8 +199,6 @@ font-size:23px;
     .positionsOfThreeAids
     {
         transform:scale(0.8,0.8);    
-        /* width: 480px;
-        height: 100px; */
         right:10px;
         left: auto;
      

@@ -1,6 +1,6 @@
 {
     "Questions": [{
-        "QuestionTitle": "Jak ma na imię osoba, którą Pan/Pani zaprosi na najbliższą rozmowę kwalifikacyjną?",
+        "QuestionTitle": "What is the name of the person you will invite for the next interview?",
         "answers": [{
             "id": "A",
             "answerTitle": "Donald John Trump"
@@ -21,7 +21,7 @@
         "correctAnswerId": "C"
     },
     {
-        "QuestionTitle": "Kto cechuje się największa determinacja do nauki i zdobywania nowej wiedzy w tworzeniu oprogramowania",
+        "QuestionTitle": "Who is characterized by the greatest determination to learn and acquire new knowledge in software development",
         "answers": [{
             "id": "A",
             "answerTitle": "Brad Pitt "
@@ -42,7 +42,7 @@
         "correctAnswerId": "B"
     },
     {
-        "QuestionTitle": "Kto według Pana/Pani spełnia wymagania do obecnego stanowiska pracy?",
+        "QuestionTitle": "Who meets the requirements for the current position?",
         "answers": [{
             "id": "A",
             "answerTitle": "Violetta Villas"
